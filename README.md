@@ -33,6 +33,10 @@
 - Yeni bir **Git deposu (repository)** oluşturur.  
 - Yani bulunduğunuz klasörü **Git tarafından takip edilen bir proje** haline getirir. 
 
+**Kısacası:**
+-Komutu çalıştırdığında klasör içinde .git adında gizli bir klasör oluşturulur.
+- Bu klasör, değişiklik geçmişini ve versiyonları saklar. 
+
 ---
 
 
@@ -50,13 +54,13 @@ Linux / MacOS’ta:
 ---
 
 ###  Kısacası
-Bu komutu yazınca klasörün içinde **`.git`** adlı gizli bir klasör oluşur.  
-Bu klasör, tüm **geçmişi** ve **versiyonları** saklar.  
+- Bu komutu yazınca klasörün içinde **`.git`** adlı gizli bir klasör oluşur.  
+- Bu klasör, tüm **geçmişi** ve **versiyonları** saklar.  
 
 ---
 
 ### 🟠 Örnek Kullanım
-```
+``` 
 mkdir proje       # Yeni klasör oluştur
 cd proje          # Klasöre gir
 git init          # Git deposu başlat
@@ -77,18 +81,22 @@ git init          # Git deposu başlat
 
 ---
 
-🟠 Örnek Kullanım:
-
+ 
+###  🟠 Örnek Kullanım: 
+``` 
 git clone https://github.com/kullanici/proje.git
 
 - <strong>Bu komut, GitHub’daki proje adlı depoyu bilgisayarına indirir.</strong>
 
-- <strong>İndirilen proje, kendi klasöründe aynı dizin yapısını ve tüm geçmiş commit’leri barındırır.</strong>
-
+- <strong>İndirilen proje, kendi klasöründe aynı dizin yapısını ve tüm geçmiş commit’leri barındırır.</strong> 
+```
 ---
 
 **3. Git Add**
 
-Ne işe yarar?
+### Ne işe yarar?
+
+- Dosyaları staging area’ya ekler. Commit öncesi hangi dosyaların kaydedileceğini belirler.
+- Git, dosyaları otomatik commit etmez; önce add ile hazırlamak gerekir.
 
 </details>
