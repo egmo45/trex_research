@@ -5,5 +5,3 @@
 <summary>Git nedir? GitHub nedir?</summary>
 
 </details>
-
-
