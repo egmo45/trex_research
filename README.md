@@ -24,7 +24,7 @@
 
 <details> 
 
-<summary><strong>📂 Temel Git komutları: init, clone, add, commit, push, pull, branch, merge..strong></summary>
+<summary><strong>📂 Temel Git komutları: init, clone, add, commit, push, pull, branch, merge..</strong></summary>
 <br>
 
 **1. Git İnit.**
@@ -51,7 +51,7 @@ Linux / MacOS’ta:
 
 - Terminal açıp yazılabilir.
 
----
+
 
 ###  Kısacası
 - Bu komutu yazınca klasörün içinde **`.git`** adlı gizli bir klasör oluşur.  
@@ -59,36 +59,35 @@ Linux / MacOS’ta:
 
 ---
 
-### 🟠 Örnek Kullanım
+### 🟠 Örnek:
 ``` 
 mkdir proje       # Yeni klasör oluştur
 cd proje          # Klasöre gir
 git init          # Git deposu başlat
 ```
 
-**2. git clone**
+**2. Git Clone**
 
- Ne işe yarar?
-- Uzak bir depoyu (mesela GitHub’daki proje) bilgisayarına indirir
+ **Ne işe yarar?**
+- Uzak bir depoyu (örneğin GitHub’daki proje) bilgisayarına indirir.
 - Örneğin GitHub’daki bir projeyi bilgisayarına indirir. Böylece projeyi yerel ortamınızda inceleyebilir, geliştirebilir ve değişiklikler yapabilirsiniz.
 
----  
 
- Kısacası:
+
+**Kısacası:**
 - Başkasının projesini geliştirmek ya da incelemek istediğinde kullanılır. Kişisel bilgisayarınızda bir kopyası olur.
-- Yerel depo (local repository) = Senin bilgisayarında oluşturulan proje kopyası 
+- Yerel depo (local repository) = Sizin bilgisayarınızda oluşturulan proje kopyası 
 - git clone, bu iki depoyu bağlar ve tüm dosyaları, commit geçmişini indirir.
 
 ---
 
  
-###  🟠 Örnek Kullanım: 
+###  🟠 Örnek: 
 ``` 
 git clone https://github.com/kullanici/proje.git
 
-- <strong>Bu komut, GitHub’daki proje adlı depoyu bilgisayarına indirir.</strong>
-
-- <strong>İndirilen proje, kendi klasöründe aynı dizin yapısını ve tüm geçmiş commit’leri barındırır.</strong> 
+- Bu komut, GitHub’daki proje adlı depoyu bilgisayarına indirir.
+- İndirilen proje, kendi klasöründe aynı dizin yapısını ve tüm geçmiş commit’leri barındırır.
 ```
 ---
 
@@ -98,5 +97,64 @@ git clone https://github.com/kullanici/proje.git
 
 - Dosyaları staging area’ya ekler. Commit öncesi hangi dosyaların kaydedileceğini belirler.
 - Git, dosyaları otomatik commit etmez; önce add ile hazırlamak gerekir.
+
+
+
+**Kıcasası:**
+- Git, dosyaları otomatik commit etmez; önce add ile hazırlamak gerekir.
+- Önce git add ile hangi değişikliklerin commit’e dahil olacağını belirlemelisiniz Bu sayede sadece istediğin dosyaları kaydedebilirsiniz.
+
+
+
+###  🟠 Örnek: 
+```
+git add dosya.txt      # Sadece dosya.txt dosyasını ekler
+git add .              # Tüm değişiklikleri ekler
+git add *.js           # Tüm .js dosyalarını ekler
+```
+
+**4. Git Commit**
+
+### Ne işe yarar? 
+
+- Git commit, staging area’ya eklediğin dosyaları kalıcı olarak Git geçmişine kaydeder. Yani değişikliklerin bir “fotoğrafını” alır ve bu fotoğrafı mesaj ile açıklar.
+- Commit mesajları kısa, açıklayıcı ve net olmalı. Örneğin "düzeltmeler" yerine "Kullanıcı giriş hatası düzeltildi" gibi mesajlar daha faydalıdır.
+
+**Kısacası:** 
+
+- Commit mesajı, değişikliğin ne yaptığını açıklamak için önemlidir git commit komutu, staging area’ya (git add ile eklediğin) dosyaları yerel Git deposuna kaydeder.
+- Commit yaptıktan sonra, değişiklik geçmişini görmek ve istenirse eski sürümlere dönmek mümkün olur.
+
+
+###  🟠 Örnek: 
+```
+
+git add index.html          # Dosyayı commit için hazırla
+git commit -m "Ana sayfa eklendi"   # Değişiklikleri kaydet
+```
+
+---
+
+**5. Git Push**
+
+### Ne işe yarar? 
+
+- Git commit komutu, staging area’ya (git add ile eklediğiniz) dosyaları yerel Git deposuna kaydeder.
+- Yani bilgisayarındaki değişiklikler artık ekip arkadaşların veya internetten erişen herkes tarafından görülebilir.
+
+**Kısacası:** 
+
+- Eğer uzak depoda yeni değişiklikler varsa, önce git pull ile güncelleme alman gerekebilir.
+- origin → uzak depo (remote) adı main → hangi branch’e göndereceğiniz
+
+
+
+**Kısacası:** 
+
+- Yerel değişiklikleri commit ettikten sonra push yapabilirsiniz.
+- Eğer uzak depoda yeni değişiklikler varsa, önce git pull ile güncelleme alman gerekebilir.
+- Push yaparken hangi branch’e göndereceğini belirtmelisin.
+
+###  🟠 Örnek: 
 
 </details>
