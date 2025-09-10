@@ -14,7 +14,7 @@
 - Geliştiriciler, projelerini internet üzerinde depolayabilir, paylaşabilir ve ekip arkadaşlarıyla iş birliği yapabilir.  
 - Sadece kod depolamakla kalmaz; aynı zamanda görev takibi, hata raporlama ve proje yönetimi gibi araçlar da sunar.  
 ---
-👉 **Kısacası:**  
+ **Kısacası:**  
 - Git altyapıyı sağlar.  
 - GitHub ise bu altyapıyı kullanıcı dostu bir ortamda sunarak yazılımcıların işini kolaylaştırır.  
 
@@ -27,7 +27,7 @@
 <summary><strong>📂 Temel Git komutları: init, clone, add, commit, push, pull, branch, merge..strong></summary>
 <br>
 
-**🔻 1. Git İnit.**
+**1. Git İnit.**
 
 ### 🔹 Ne işe yarar?
 - Yeni bir **Git deposu (repository)** oluşturur.  
@@ -49,7 +49,7 @@ Linux / MacOS’ta:
 
 ---
 
-### 👉 Kısacası
+###  Kısacası
 Bu komutu yazınca klasörün içinde **`.git`** adlı gizli bir klasör oluşur.  
 Bu klasör, tüm **geçmişi** ve **versiyonları** saklar.  
 
@@ -62,15 +62,15 @@ cd proje          # Klasöre gir
 git init          # Git deposu başlat
 ```
 
-**🔻 2. git clone**
+**2. git clone**
 
 🔹Ne işe yarar?
 - Uzak bir depoyu (mesela GitHub’daki proje) bilgisayarına indirir
 - Örneğin GitHub’daki bir projeyi bilgisayarına indirir. Böylece projeyi yerel ortamınızda inceleyebilir, geliştirebilir ve değişiklikler yapabilirsiniz.
 
----
+---  
 
-👉 Kısacası:
+ Kısacası:
 - Başkasının projesini geliştirmek ya da incelemek istediğinde kullanılır. Kişisel bilgisayarınızda bir kopyası olur.
 - Yerel depo (local repository) = Senin bilgisayarında oluşturulan proje kopyası 
 - git clone, bu iki depoyu bağlar ve tüm dosyaları, commit geçmişini indirir.
