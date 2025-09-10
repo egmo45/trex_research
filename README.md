@@ -29,14 +29,14 @@
 
 **1. Git İnit.**
 
-### 🔹 Ne işe yarar?
+###  Ne işe yarar?
 - Yeni bir **Git deposu (repository)** oluşturur.  
 - Yani bulunduğunuz klasörü **Git tarafından takip edilen bir proje** haline getirir. 
 
 ---
 
 
-### 🔹 Nerede Kullanılır?
+###  Nerede Kullanılır?
 -  git **init** aslında komut satırında (terminalde/komut isteminde) kullanılan bir komuttur. “Make Directory” kısaltmasıdır ve yeni klasör (dizin) oluşturmak için kullanılır.
 
  Windows’ta:
@@ -64,7 +64,7 @@ git init          # Git deposu başlat
 
 **2. git clone**
 
-🔹Ne işe yarar?
+ Ne işe yarar?
 - Uzak bir depoyu (mesela GitHub’daki proje) bilgisayarına indirir
 - Örneğin GitHub’daki bir projeyi bilgisayarına indirir. Böylece projeyi yerel ortamınızda inceleyebilir, geliştirebilir ve değişiklikler yapabilirsiniz.
 
@@ -84,5 +84,11 @@ git clone https://github.com/kullanici/proje.git
 - <strong>Bu komut, GitHub’daki proje adlı depoyu bilgisayarına indirir.</strong>
 
 - <strong>İndirilen proje, kendi klasöründe aynı dizin yapısını ve tüm geçmiş commit’leri barındırır.</strong>
+
+---
+
+**3. Git Add**
+
+Ne işe yarar?
 
 </details>
