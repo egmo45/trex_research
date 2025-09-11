@@ -803,12 +803,46 @@ asyncio.run(main())
 
 - **Kısacası: Await ile bir Task beklerken, ConfigureAwait(bool) çağırarak await sonrasında kodun hangi context’te (thread veya senkronizasyon bağlamında) devam edeceğini belirlersin.**
 
-
-
+</details>
+<br>
 <br>
 
+## 🗄️ Backend Geliştirme Temelleri
 
 
+<details> 
+
+<summary><strong>Backend Nedir? Frontend ile Farkları</strong></summary>
+
+- **Web Dünyasında iki tane yüz vardır Backend ve Frontend. Web Sitelerinin Görünen ve Görünmeyen Yüzleri olarak web sitelerinin nasıl oluştuğunu anlamamıza yardımcı olur sırasıyla Back-End ve Front-Endi inceleyeceğiz**
+
+
+###  Frontend: İnternetin Görünen Yüzü: 
+
+- **Hepimiz Facebook,Instagram,X(Twitter),Youtube, Netflix gibi daha bir çok uygulama kullanıyoruz ve bu web sitelerde uygulamalarda gördüğümüz şeylerin hepsi Frontend sayesinde yapılıyor Tıpkı bir resim gibi, Front-End de web sitesinin ilk izlenimini oluşturur ve kullanıcı deneyimini şekillendirir. Renkler, yazı tipleri, düzen, animasyonlar ve etkileşimli öğeler, Front-End tasarımının temel unsurlarıdır.**
+
+- **Frontend Programları Nelerdir:**
+
+- **HTML: Bir resmin taslağını oluşturur gibi Web Sitesinin temelini atar oluşturur bazı temel renkler yapar ve siteyi boyutlandırır bir taslak görevi görür.**
+
+- **CSS: Resmin taslağı hazırlanınca içine çizim yapmak kalır Bunuda CSS Yapar yani (Cascading Style Sheets),  adını verdiğimiz güçlü bir teknoloji vardır. HTML, web sayfalarının iskeletini oluştururken; CSS bu iskeleti süsleyen, renklendiren, düzenleyen ve kullanıcı dostu hale getiren yapı taşını sağlar.**
+
+- **JAVASCRIPT: Web dünyasında kullanıcıların gördüğü ve etkileşimde bulunduğu her şeyin arkasında JavaScript (JS) yatar . HTML sayfanın iskeletini, CSS tasarımı sağlarken; JavaScript, web sayfalarını dinamik ve etkileşimli hale getirir. Bu makalede, JavaScript’in frontend’de nasıl kullanıldığını ve web geliştirmedeki önemini detaylı bir şekilde ele alacağız.**
+
+- **JavaScript’in Frontend’deki Rolü: Javascript hem Frontend hemde Backendde kullanılabilir ama konumuz Frontend olduğu için bugün Frontend kısmına bakacağız: JavaScript, sayfada HTML elementlerini değiştirme, ekleme veya silme işlemlerini yapabilir. Örneğin bir kullanıcı butona tıkladığında başlığın değişmesi veya yeni bir içerik kutusunun eklenmesi JS ile sağlanı Form gönderimleri, buton tıklamaları, fare hareketleri veya klavye girişleri JS ile yakalanır ve işlenir. Bu sayede web sayfaları yalnızca statik görünmekten çıkar ve kullanıcıya etkileşimli deneyim sunar JavaScript, CSS stillerini değiştirebilir ve animasyonlar ekleyebilir. Örneğin fare üzerine gelindiğinde arka plan renginin değişmesi veya butonların kayarak açılması JS ile yapılır.**
+
+
+###  Backend: İnternetin Görünmeyen Yüzü: 
+
+- **Hepimiz Facebook,Instagram,X(Twitter),Youtube, Netflix gibi daha bir çok uygulama kullanıyoruz ve bu web sitelerde uygulamalarda görmediğimiz şeylerin hepsi Backend ile yapılıyor, Backend web sitesinin perde arkasında çalışan, kullanıcıların doğrudan göremediği ancak sitenin işlevselliğini sağlayan kısmıdır. Veri tabanı yönetimi, sunucu tarafı mantığı, API entegrasyonları ve güvenlik gibi kritik görevleri yerine getirir. BackEnd, web sitesinin beyni ve kalbi olarak düşünülebilir.**
+
+- **Backend Programları Nelerdir:** 
+
+- **Python: Python, sadeliği ve güçlü kütüphaneleri ile backend dünyasında oldukça popülerdir ve öğrenilmeside kolay bir dildir çoğu yazılımcı için başlangıç dili olarak kabul edilebilir Backendde yaptığı çalışmar ise API geliştirme ve veri yönetimi,Kullanıcı doğrulama ve yetkilendirme Sunucu tarafı iş mantığı,Veri analizi ve otomasyon işlemleri vs..** 
+
+- **PHP: Eski bir dil ve ancak halen daha çok popüler ve Web Siteleri Dünyasının %70'i Web Sitelerinde PHP kullanmaktadırYaptığı İşler Web formları ve veri tabanı işlemleri,Sunucu tarafı iş mantığı,CMS ve blog sistemleri (WordPress, Joomla gibi) Hosting ve barındırma açısından geniş destekleri bulunmakta ve MySQL programı ile çok uyumlu çalışması ile mükemmel bir Backend uygulamasıdır**
+
+- **Java: Javai özellikle büyük ölçekli ve kurumsal uygulamalarda backend’de tercih edilir. PHP gibi eski bir dildir ancak halen daha günümüzde kullanılır Kurumsal uygulamalardan mobil uygulamalara, oyunlardan web servislerine kadar çok geniş bir kullanım alanına sahiptir. Veri Tabanı Yönetimi, API Geliştirme ve Özellikle backend geliştirme dünyasında Java, güvenilirliği ve ölçeklenebilirliği nedeniyle yaygın olarak tercih edilir.**
 
 
 </details>
