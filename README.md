@@ -844,5 +844,46 @@ asyncio.run(main())
 
 - **Java: Javai özellikle büyük ölçekli ve kurumsal uygulamalarda backend’de tercih edilir. PHP gibi eski bir dildir ancak halen daha günümüzde kullanılır Kurumsal uygulamalardan mobil uygulamalara, oyunlardan web servislerine kadar çok geniş bir kullanım alanına sahiptir. Veri Tabanı Yönetimi, API Geliştirme ve Özellikle backend geliştirme dünyasında Java, güvenilirliği ve ölçeklenebilirliği nedeniyle yaygın olarak tercih edilir.**
 
+</details>
+
+
+<details> 
+
+<summary><strong>Web sunucusu nedir? API nedir? API türleri</strong></summary>
+
+**WEB Sunucusu Nedir?:** 
+
+- **Web sunucusu, HTTP(Hypertext Transfer Protocol)veya HTTPS(HTTP Secure) protokolü üzerinden gelen istekleri alan, işleyen ve yanıt veren bir yazılım veya donanım sistemidir. HTML,CSS,JS gibi yazılım dillerinin oluşturdukları istekleri alır ve geri gönderir diğer  Kısaca API, yazılımların birbirine “konuşma dili” olarak düşünülebilir.kaynakların içerğini yollar eğer yollayamazsa hata kodları verir(İsteğe karşılık 200 OK, 404 Not Found veya 500 Internal Server Error gibi HTTP durum kodları döndürür.) Bu iletişim süreci şu şekilde işler. istemcinin belirli bir URL (Uniform Resource Locator) ile iletişim talep etmesiyle başlar. Bu istek, sunucuya HTTP protokolü kullanılarak iletilir. Ardından talep istenilen sonuca varırsa geri karşılık olarak istemciye geri yolla rHTTPS ile veri şifreleme yaparGüvenlik duvarları ve erişim kontrolü hazırlar Ayrıca Backend uygulamaları (Python, Java, C#, PHP) genellikle web sunucusu üzerinden çalıştırılır. Kullanıcı tarayıcıdan bir istek gönderdiğinde web sunucusu, backend uygulamasına iletir ve gelen veriyi kullanıcıya sunar.**
+
+
+**API Nedir:** 
+
+- **Günümüz yazılım dünyasında uygulamalar ve servisler birbirleriyle sürekli iletişim halindedir. Bu iletişimi sağlayan köprülerden biri API (Application Programming Interface – Uygulama Programlama Arayüzü)’dür. API, farklı yazılımların birbirleriyle güvenli ve standart bir şekilde veri alışverişi yapmasını sağlar.Geliştiriciye hazır fonksiyon ve metodlar sunar. Uygulama veya sistemlerin birbirine doğrudan müdahale etmeden iletişim kurmasını sağlar. Kullanım alanı evrenseldir Web ve Mobil Uygulamalarda Backend ile frontend arasındaki veri akışı API üzerinden sağlanır. Üçüncü Parti Servisler: Örn. Google Maps, Twitter, ödeme sistemleri (PayPal, Stripe) API ile entegre edilir. Uygulamalar ayrı ayrı geliştirilip API üzerinden birbirine bağlanabilir. Aynı API, farklı uygulamalar tarafından tekrar tekrar kullanılabilir.**
+
+
+
+### API Türleri Nelerdir:
+
+- **Herkese Açık API’ler (Public APIs)**
+
+
+
+
+
+
+
+
+
+### API Protokol Türleri Nelerdir?:
+
+- **API (Application Programming Interface – Uygulama Programlama Arayüzü), uygulamaların birbirleriyle veri alışverişi yapmasını sağlayan bir köprüdür. Ancak tüm API’ler aynı şekilde çalışmaz; farklı protokoller ve standartlar kullanırlar. Bu nedenle API’ler çeşitli türlere ayrılır.**
+
+### 1. REST API (Representational State Transfer)
+
+- **HTTP protokolü üzerine kurulmuş, veri alışverişini genellikle JSON veya XML formatında gerçekleştiren API türüdür. Stateless bir duruma sahiptir yani kullanıcının durumunu saklamaz CRUD (Create, Read, Update, Delete) işlemleri için uygundur Basit, esnek ve yaygın kullanılır daha çok Web veya mobil uygulamalarda tercih edilir**
+
+### 2. SOAP API (Simple Object Access Protocol)
+
+- **Türkçesi Basit Nesne Erişim Protokolü, dağıtık yapıda bulunan web servislerinin iletişimi gerçekleştirmek üzere kullanılan Sunucu XML tabanlı, sıkı kurallara sahip, güvenli veri transferi sağlayan API türüdür. Daha fazla güvenlik ve hata yönetimi sağlar Kurumsal ve banka uygulamalarında tercih edilir Katı kuralları**
 
 </details>
