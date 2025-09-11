@@ -219,7 +219,7 @@ git checkout main
 </details> 
 
 <details>
-<summary><strong>⚙ Merge conflict nedir, nasıl çözülür?</strong></summary>
+<summary><strong> Merge conflict nedir, nasıl çözülür?</strong></summary>
 <br>
 
 ### Merge Conflict nedir?
@@ -227,5 +227,365 @@ git checkout main
 - Merge conflict, iki farklı branch (şube) üzerinde aynı dosyanın aynı satırlarında farklı değişiklikler yapıldığında ortaya çıkar.
 
 - Git, hangi değişikliğin doğru olduğunu kendi başına karar veremez. Bu durumda “çatışma” (conflict) oluşur.
+
+### Merge Conflict neden olur?
+
+- Aynı dosyanın aynı satırları iki branch’te farklı şekilde değiştirilmiş
+
+- Bir branch’te bir dosya silinmiş, diğer branch’te değiştirilmiş.
+
+- Büyük ve uzun süreli değişiklikler yapılmış, branch’ler güncel değil.
+
+- Örneğin main branch’inde file.txt’in 5. satırı “Merhaba” olarak değiştirilmiş.
+
+feature-branch’te aynı satır “Selam” olarak değiştirilmiş.
+
+main branch’inde feature-branch ile merge yapılırsa, Git hangi satırı bırakacağını bilemez → merge conflict oluşur.
+
+**Detaylar:**
+
+- Siz branch-A üzerinde bir dosyayı değiştirdiniz Aynı dosya branch-B üzerinde de değişmiş.
+
+- Git, bu değişiklikleri otomatik birleştiremiyor ve size çatışmayı (conflicti) bildiriyor.
+
+
+
+##  Çözüm Adımları:
+
+
+ **Git merge yaparken şöyle bir mesaj alırsınız:**
+
+- Auto-merging file.txt
+- CONFLICT (content): Merge conflict in file.txt
+- Automatic merge failed; fix conflicts and then commit the result.
+
+### Bu demek oluyor ki example.txt dosyasında iki farklı değişiklik çakışıyor.
+
+- Hangi dosyalar çatışmış görmek için önce **git status** yazıyorsunuz.
+
+- Çıktıda şöyle görürsünsünüz 
+
+**both modified: example.txt** 
+
+Yani hem sizin branch’ında hem diğer branch’ta değişiklik var.
+
+### Önce Çatışmayı Fark Etmeliyiz
+
+- git checkout main, git merge feature-branch
+
+- Conflict işaretlerini sil <<<<<<<, =======, >>>>>>> satırlarını mutlaka silmelisin.
+
+- HEAD → Senin bulunduğun branch (main)
+
+- "=======" → ayırıcı
+
+- feature-branch → diğer branch
+
+**Git sizi uyarır:**
+
+- CONFLICT (content): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+ **Hangi değişikliği tutacağına karar ver**
+
+- Sadece kendi değişikliğini tut → **diğerini sil**
+
+- Sadece diğer branch’in değişikliğini tut → **kendi değişikliğini sil**
+
+- İkisini birleştir → ikisini de düzenle
+
+- Merge commit’i oluştur **git commit**
+
+- Git otomatik mesaj olarak Merge branch 'feature-branch' into main yazar. Merge tamamlanmış olur.
+</details>
+
+<details>
+<summary><strong>CI/CD nedir? Azure DevOps, GitHub Actions ile pipeline örnekleri</strong></summary>
+
+
+**1. CI/CD Nedir?**
+
+<br>
+- CI (Continuous Integration / Sürekli Entegrasyon):
+
+- Geliştiricilerin yaptıkları değişikliklerin sık sık merkezi bir repository’ye (GitHub, Azure Repos) entegre edilmesi ve otomatik olarak test edilmesi sürecidir. Amaç hataları erken yakalamak ve entegrasyon sorunlarını azaltmak.
+
+- Kod entegrasyonunda oluşabilecek hataları erken yakalamak için CI kullanılır.
+
+- Continuous Delivery (Sürekli Teslimat): Kod testlerden geçtikten sonra manuel onay ile production’a veya staging’e gönderilir CD kullanılır.
+
+- CI, yazılım geliştirme sürecinde geliştiricilerin kod değişikliklerini sık sık merkezi bir repository’ye (GitHub, GitLab vb.) göndermesi ve bu değişikliklerin otomatik olarak test edilmesi sürecidir.
+
+- CD (Continuous Delivery / Continuous Deployment / Sürekli Teslimat / Sürekli Dağıtım):
+
+- Continuous Delivery: Kod, testlerden geçtikten sonra manuel onay ile production’a veya staging’e gönderilir.
+
+- Continuous Deployment: Kod, testlerden geçtikten sonra otomatik olarak production’a gönderilir
+
+- **Kısaca: CI kodu sürekli test eder, CD ise kodu sürekli dağıtır**
+
+<br>
+
+**CI/CD’nin avantajları:**
+
+- Hataları erken yakalar.
+
+- Geliştirme sürecini hızlandırır.
+
+- Otomatik test ve dağıtım ile güvenilirlik artar.
+
+- Takımlar arasında entegrasyonu kolaylaştırır.
+
+- GitHub, Azure Repos / Azure DevOps, Netflix, Facebook, Instagram, Airbnb gibi bir çok uygulama ve araç CI/CD kullanır çünkü kod sürekli değişir ve hızlı deploy gerekir
+<hr> 
+
+### Azure DevOps ile Pipeline Örneği
+
+### - İlk adım olarak:
+
+**Trigger / Başlatma:**
+
+- Ne yapar: Pipeline hangi olayla tetiklenecek belirlenir (örn. main branch’e push, pull request).
+
+**Build / Derleme:**
+
+- Ne yapar: Kodun çalışabilir hâle getirilmesi, derlenmesi veya paketlenmesi.
+
+**Test:**
+
+- Ne yapar: Unit test, integration test veya end-to-end testleri çalıştırır.
+
+**Deploy / Dağıtım:**
+
+- Ne yapar: Testleri geçen kodu staging veya production ortamına taşır.
+
+**Notification / Bildirim**
+
+- Ne yapar: Pipeline sonucu hakkında geliştiricilere bilgi verir (başarılı/başarısız).
+
+**Aşağıdaki Örnek Bir GitHub Actions Pipeline Örneğidir.**
+
+ ```
+
+name: Python CI/CD
+
+# 1. Tetikleyici (Trigger)
+on:
+  push:
+    branches: [ main ]        # main branch’e push olunca çalışır
+  pull_request:
+    branches: [ main ]        # Pull request açıldığında çalışır
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest     # 2. Çalışma ortamı (VM)
+
+    steps:
+    # 3. Kodun çekilmesi
+    - uses: actions/checkout@v3
+      name: Step 1: Checkout code
+      # Ne yapıyor: Repository’deki kodu pipeline ortamına kopyalar
+
+    # 4. Python kurulumu
+    - name: Step 2: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+      # Ne yapıyor: Pipeline ortamına Python 3.x yükler
+
+    # 5. Bağımlılıkların yüklenmesi
+    - name: Step 3: Install dependencies
+      run: pip install -r requirements.txt
+      # Ne yapıyor: Projenin çalışması için gerekli kütüphaneleri yükler
+
+    # 6. Testlerin çalıştırılması
+    - name: Step 4: Run tests
+      run: pytest
+      # Ne yapıyor: Kodun hatasız çalışıp çalışmadığını test eder (CI adımı)
+
+    # 7. Deploy
+    - name: Step 5: Deploy to server
+      run: |
+        scp -r ./app user@server:/var/www/app
+        ssh user@server 'systemctl restart app'
+      # Ne yapıyor: Testleri geçen kodu uzak sunucuya kopyalar ve uygulamayı restart eder (CD adımı)
+
+```
+<hr>
+
+**Aşağıdaki ise bir Azure DevOps Örneğidir**
+ ```
+name: Python CI/CD
+
+# 1. Tetikleyici (Trigger)
+on:
+  push:
+    branches: [ main ]       # main branch’e push olunca tetiklenir
+  pull_request:
+    branches: [ main ]       # Pull request açıldığında da tetiklenir
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest    # 2. Hangi işletim sistemi üzerinde çalışacak
+
+    steps:
+    # 3. Repo kodunu çek
+    - uses: actions/checkout@v3
+      name: Step 1: Checkout code
+      # Ne yapıyor: Repository’deki kodu pipeline ortamına kopyalar
+
+    # 4. Python kurulumu
+    - name: Step 2: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+      # Ne yapıyor: Pipeline ortamına Python 3.x kurar
+
+    # 5. Bağımlılıkları yükleme
+    - name: Step 3: Install dependencies
+      run: pip install -r requirements.txt
+      # Ne yapıyor: Projenin çalışması için gerekli kütüphaneleri yükler
+
+    # 6. Testleri çalıştır
+    - name: Step 4: Run tests
+      run: pytest
+      # Ne yapıyor: Kodun düzgün çalışıp çalışmadığını kontrol etmek için testleri çalıştırır (CI adımı)
+
+    # 7. Deploy
+    - name: Step 5: Deploy to server
+      run: |
+        scp -r ./app user@server:/var/www/app
+        ssh user@server 'systemctl restart app'
+      # Ne yapıyor: Testler başarılıysa kodu uzak sunucuya kopyalar ve uygulamayı restart eder (CD adımı)
+
+```
+
+**Arasındaki Farklar:**
+
+- Azure genellikle Genellikle büyük projelerde kullanılır, Build, Test, Deploy adımları portal üzerinden görselleştirilebilir. CI ve CD pipeline’ları aynı yerde veya ayrı ayrı olabilir.
+
+- GitHub Actions ise Repo tabanlıdır, pipeline dosyası repo içinde bulunur, GitHub event’leri ile pipeline tetiklenir (push, pull request, issue açma, release vb.). Daha küçük veya açık kaynak projeler için hızlı ve kolaydır.
+
+## .NET Projesinde Nasıl Uygulanabilir? 
+
+- **Siz bir ASP.NET Core web uygulaması geliştiriyorsunuz. Bu uygulama banka işlemleri yapan bir sistem. Her gün yeni özellikler ekliyorsunuz ve kodu GitHub’a push ediyorsunuz. Ama her seferinde “Acaba deploy ederken hata çıkar mı?” diye endişeleniyorsunu<. İşte CI/CD bu noktada devreye giriyor ve size “otomatik testçi ve deploy asistanı” gibi yardım ediyor.**
+
+**Adım Adım:**
+
+- **1. Adım: Siz kodunuzu GitHub’daki main branch’ine push ediyorsunuz.  GitHub Actions veya Azure DevOps bunu görüyor ve diyor ki: “yeni kod geldi Hadi bakalım test edelim ve deploy edelim.”**
+
+- **2. Adım: Pipeline ortamı bir Windows veya Linux makinesi açıyor. dotnet build komutu çalışıyor:  hatasız derlenip derlenmediğine bakıyor. Eğer bir hata varsa, hemen size bildiriyor ve pipeline duruyor.**
+
+- **3. Adım: Pipeline, dotnet test komutunu çalıştırıyor Unit testler, integration testler devreye giriyor. Örneğin para transferi fonksiyonu doğru çalışıyor mu kontrol ediliyor. Eğer testler başarısızsa pipeline kodu yapmıyor Böylece hatalı kod merge veya deploy edilmiyor**
+
+- **4. Adım: Kod testlerden geçtiyse pipeline, dotnet publish komutunu çalıştırıyor. Uygulaman artık sunucuya taşınmaya hazır bir paket hâline geliyor.**
+
+- **5. Adım: Pipeline, kodu sunucuya kopyalıyor (scp veya Azure deploy task). Sunucuda uygulama restart ediliyor (systemctl restart myapp veya IIS restart). Artık yeni özellikler canlı ortamda kullanıcıların kullanımına sunuluyor.**
+
+- **6. ADIM: Adım: Bildirim CI/CD pipeline sonucu sana bildiriliyor: Başarılı → “Her şey yolunda, deploy tamamlandı.” Hatalı → “Testler başarısız oldu, müdahale etmelisin.”**
+
+<br>
+</details>
+
+<details> 
+<summary><strong>Ek Maddeler</strong></summary>
+
+### SDLC (Software Development Life Cycle / Yazılım Geliştirme Yaşam Döngüsü) Nedir?
+
+- SDLC, bir yazılımın fikirden başlayıp kullanıcıya ulaşana kadar geçen tüm geliştirme sürecini sistematik şekilde yöneten bir yaşam döngüsüdür.
+
+- Amacı Yazılımın kaliteli, hatasız ve zamanında teslim edilmesini sağlamak ve Riskleri ve maliyetleri azaltmaktır Kısaca: SDLC, “yazılımın doğumundan emekli olana kadar geçen süreç” diyebiliriz.
+
+### SDLC Aşamaları: 
+
+**- 1 Planlama:**
+
+- Ne yapılacak, neden yapılacak belirlenir. Kaynaklar, zaman çizelgesi ve maliyet planlanır.
+- **Örnek: Bir banka uygulaması geliştirmek için hedefler ve gereksinimler belirlenir.**
+
+**- 2 Requirements Analysis / Gereksinim Analizi:**
+
+- Kullanıcı ve sistem gereksinimleri toplanır ve dokümante edilir.
+- **Örnek: Kullanıcıların mobil bankacılıkta ne yapmak istediği analiz edilir (para transferi, bakiye kontrol, ödeme)**
+
+**- 3 Design / Tasarım:**
+
+- Yazılımın mimarisi ve tasarımı yapılır, UI/UX tasarımı, veri tabanı yapısı, modüller belirlenir.
+- **Örnek: Mobil bankacılık uygulamasının ekran tasarımları ve veri tabanı şeması hazırlanır.**
+
+**4 - Implementation / Kodlama:**
+
+- Yazılımın asıl kodlanması bu aşamada yapılır. Modüller geliştirilir ve birleştirilir.
+- **Örnek: Bankacılık uygulaması için Python, Java veya Swift ile kod yazılır.**
+
+**5 - Testing / Test:**
+
+- Yazılımın hatasız çalışıp çalışmadığı test edilir. Unit test, integration test, system test gibi testler uygulanır.
+- **Örnek: Para transferi fonksiyonu hatasız çalışıyor mu test edilir.**
+
+**6 - Deployment / Yayına Alma:**
+
+- Canlı ortamda kurulum yapılır, Yazılım kullanıcıya sunulur.
+- **Örnek: Mobil uygulama App Store ve Play Store’a yüklenir**
+
+**7 - Maintenance / Bakım:**
+
+- Yazılım kullanıldıkça güncellenir, hatalar düzeltilir, yeni özellikler eklenir.
+- **Örnek: Bankacılık uygulamasına yeni güvenlik özellikleri eklenir veya hata düzeltmeleri yapılır.**
+
+**Özet Olarak:**
+
+## SDLC, bir yazılım projesini planlamadan bakıma kadar tüm aşamalarda sistematik yönetme metodudur.
+
+- Planla → Analiz et → Tasarla → Kodla → Test et → Yayınla → Bakım yap
+
+- CI/CD gibi pipeline sistemleri, SDLC’nin Implementation ve Deployment aşamalarını otomatikleştirmeye yardımcı olur.
+<br>
+<hr>
+
+
+### 1. Agile/Scrum/Kanban metodolojileri 
+
+**- Agile, yazılım geliştirmede çevik, esnek ve iteratif bir yaklaşımdır.**
+
+**Temel Özellikleri:**
+
+- Küçük adımlarla ve kısa iterasyonlarla geliştirme yapılır, Sürekli kullanıcı geri bildirimi alınır.
+- Değişikliklere hızlı adapte olunur.
+-Takım içi iletişim ve işbirliği ön plandadır.
+
+### Örnek: Bir mobil uygulama geliştiriyorsunuz. Agile ile 2 haftalık kısa sprintler halinde her seferinde küçük özellikleri tamamlayıp kullanıcıya sunuyorsunuz. Kullanıcı geri bildirimiyle bir sonraki sprint’i şekillendiriyorsunuz.
+<br>
+
+### 2. Scrum Metodolojisi: 
+
+**- Scrum, Agile’ın bir uygulama şeklidir. Takım bazlı, belirli rolleri ve süreçleri olan bir framework sunar.**
+
+**Temel Özellikleri:**
+
+- Sprint: Genellikle 1-4 hafta süren geliştirme döngüsü
+- Product Owner: Ürün gereksinimlerini belirler
+- Scrum Master: Takımın sürece uygun çalışmasını sağlar, engelleri kaldırır
+- Development Team: Kodlayan ve test yapan ekip
+- Artifacts: Product Backlog, Sprint Backlog, Increment
+
+### Örnek: Takım bir Sprint Planning toplantısı yapar → 2 haftalık yapılacaklar belirlenir Günlük Daily Scrum toplantısı yapılır → herkes ne yaptığını ve engelleri paylaşır Sprint sonunda demo yapılır ve kullanıcı geri bildirimi alınır
+
+<br>
+<hr>
+
+### 3. Kanban Metodolojisi:
+
+**- Kanban, Agile prensiplerini kullanır ama akışı görselleştirmeye ve iş yükünü dengelemeye odaklanır.**
+
+**Temel Özellikleri:**
+
+- Kanban Board: İşlerin durumunu gösteren görsel tablo (örn. To Do / In Progress / Done)
+
+- Work In Progress (WIP) Limit: Aynı anda yapılacak iş sayısını sınırlar
+
+- Continuous Flow: İşler durmaksızın akış halinde ilerler
+
+### Örnek: Bir web geliştirme projesinde Kanban board oluşturursunuz: To Do → Yapılacak işler In Progress → Üzerinde çalışılan işler Done → Tamamlanan işler Her geliştirici bir işi alır ve tamamlayana kadar devam eder, board ile iş akışı net görülür.
 
 </details>
