@@ -482,7 +482,8 @@ jobs:
 
 - **5. Adım: Pipeline, kodu sunucuya kopyalıyor (scp veya Azure deploy task). Sunucuda uygulama restart ediliyor (systemctl restart myapp veya IIS restart). Artık yeni özellikler canlı ortamda kullanıcıların kullanımına sunuluyor.**
 
-- **6. ADIM: Adım: Bildirim CI/CD pipeline sonucu sana bildiriliyor: Başarılı → “Her şey yolunda, deploy tamamlandı.” Hatalı → “Testler başarısız oldu, müdahale etmelisin.”**
+- **6. Adım: Adım: Bildirim CI/CD pipeline sonucu sana bildiriliyor: Başarılı veya Hatalı.”**
+
 
 <br>
 </details>
@@ -587,5 +588,126 @@ jobs:
 - Continuous Flow: İşler durmaksızın akış halinde ilerler
 
 ### Örnek: Bir web geliştirme projesinde Kanban board oluşturursunuz: To Do → Yapılacak işler In Progress → Üzerinde çalışılan işler Done → Tamamlanan işler Her geliştirici bir işi alır ve tamamlayana kadar devam eder, board ile iş akışı net görülür.
+
+</details>
+<br>
+<br>
+
+## 2. .NET Ekosistemi
+
+<details> 
+<summary><strong>🖥.NET nedir? Tarihçesi, amacı, neden kullanılır?</strong></summary>
+<br>
+ 
+- **.NET, Microsoft tarafından geliştirilmiş bir yazılım geliştirme platformudur. Amacı Windows, web, mobil ve bulut uygulamaları geliştirmeyi kolaylaştırmak. Özellik: Farklı programlama dilleri ve cihazlar için ortak bir altyapı sağlar. Özetle .NET, geliştiricilere güçlü ve esnek bir yazılım geliştirme ortamı sunar.**
+<br>
+
+### .NET Tarihçesi
+
+### İlk başta Başlangıçta Windows odaklıydı (.NET Framework) Sonra cross-platform ve açık kaynak hâline geldi (.NET Core) Günümüzde tek ve modern platform (.NET 5+) olarak kullanılıyor Aşağıdaki ise detaylı tarihçesi:
+
+- 2000: **.NET ilk kez Microsoft, .NET Framework projesini tanıttı. Amacı ise Windows uygulamaları, web uygulamaları ve servisler için ortak bir platform oluşturmaktı.**
+
+- 2001: **.NET Framework 1.0 Olarak Resmi olarak piyasaya sürüldü. Temel özellikler: Windows Forms, ASP.NET, ADO.NET gibi bileşenler Sadece Windows platformunu destekliyordu.**
+
+- 2003: **2003 – .NET Framework 1.1 Duyrulmuştu, Güncellemeler: Web servisleri geliştirme desteği, mobil uygulama temelleri.**
+
+- 2005: **.NET Framework 2.0 Çıktı Yeni özellikler: Generics, ASP.NET 2.0, Windows Forms iyileştirmeleri.**
+
+- 2006: **2008 – .NET Framework 3.5 LINQ (Language Integrated Query) eklendi WCF (Windows Communication Foundation) ve WPF (Windows Presentation Foundation) destekleri geliştirildi**
+
+- 2010: **.NET Framework 4.0 Parallel programming ve performans iyileştirmeleri Gelişmiş web servis desteği**
+
+- 2016: **.NET Core 1.0 Cross-platform (Windows, Linux, Mac) için modern platform Açık kaynak olarak sunuldu**
+
+- 2019 – **.NET Core 3.1 Masaüstü uygulamaları (WinForms, WPF) ve konsol uygulamaları için destek Uzun süreli destek yapıldı ve (LTS) sürümü çıktı**
+
+- 2021 ve sonrası: **NET 6, .NET 7, .NET 8… Modern uygulamalar için performans iyileştirmeleri, bulut ve mobil entegrasyonları ASP.NET Core, Blazor, MAUI gibi teknolojilerle gelişmiş uygulama geliştirme**
+
+
+</details>
+
+<details> 
+<summary><strong>.NET Framework, .NET Core ve .NET 7/8+ farkları</strong></summary>
+
+### 1. .NET Framework:
+
+- **Platform: Sadece Windows**
+
+- **Açık Kaynak: Hayır (kapalı kaynak)**
+
+- **Kullanım: Windows Forms, WPF, ASP.NET Web Forms Masaüstü uygulamaları ve Kurumsal Windows uygulamaları**
+
+- **Performans: Orta seviye, Windows’a optimize**
+
+- **Güncelleme: Yeni özellik ekleme yavaş, Microsoft tarafından destekleniyor**
+
+- **Avantaj: Windows uygulamaları ve eski projeler için stabil**
+
+- **Dezavantaj: Cross-platform değil, modern uygulamalar için sınırlı**
+<br>
+### 2 .NET Core:
+
+- **Platform: Cross-platform (Windows, Linux, Mac)**
+
+- **Açık Kaynak: Evet (GitHub üzerinden)**
+
+- **Kullanım: Modern web uygulamaları, API, mikroservisler Örneğin ASP.NET Core Web API Cross-platform CLI araçları Docker ve Kubernetes uygulamaları**
+
+- **Performans: Daha hızlı, hafif ve modüler**
+
+- **Güncelleme: Hızlı geliştirme, sürümler sık güncelleniyor**
+
+- **Avantaj: Platform bağımsız, konteyner ve bulut dostu**
+
+- **Dezavantaj: Bazı eski Windows özelliklerini desteklemez**
+<br>
+
+### 3. .NET 5 / 6 / 7 / 8+:
+
+- **Platform: Cross-platform, modern ve birleşik**
+
+- **Açık Kaynak: Bulunuyor.**
+
+- **Kullanım: Web, masaüstü, mobil, bulut, IoT, oyun geliştirme vs.**
+
+- **Performans: Yüksek performans, modern optimizasyonlar eskiye göre çok daha kaliteli**
+
+- **Güncelleme: Tek platformda tüm özellikler birleşik, düzenli LTS sürümleri geliyor geleceği daha çok parlak**
+
+- **Avantaj: .NET Framework ve .NET Core birleşti → tek platform Modern uygulamalar için optimize  MAUI ile cross-platform mobil ve masaüstü desteği**
+
+- **Dezavantaj: Çok eski projeler için uyumluluk sorunları olabilir özellikle NET 5 ve sonrasında problem yaşanabilir**
+
+<br>
+
+### 3. Platformlar arası çalışabilir mi? (Windows, Linux, macOS):
+
+**1. NET Framework:** 
+
+- **Çalışma Alanı: Sadece Windowsla sınırlı**
+
+- **Linuxi macOS'ta doğrudan çalışmaz. Esasen Windowsa bağlıdır**
+
+<br>
+
+**2. NET Core:**
+
+- **Çalışma Alanı: Windows,Linux,macOS sadece Windows ile sınırlı değil** 
+
+- **Microsoft, .NET Core’u cross-platform olarak tasarladı.**
+
+- **Konsol uygulamaları, Web API’ler ve ASP.NET Core projeleri bu üç platformda da aynı şekilde çalışır.**
+
+<br>
+
+**3..NET 5 / 6 / 7 / 8+:**
+
+- **Tamamen cross-platformdur**
+
+- **Windows, Linux ve macOS üzerinde resmi destek alır.**
+
+- **Masaüstü (WinForms, WPF) kısmı sadece Windows’a özgü kalmıştır, ama diğer alanlarda (Web, Blazor, MAUI, konsol, API, IoT) tüm platformlarda çalışır.**
+
 
 </details>
