@@ -215,6 +215,17 @@ git branch
 git checkout main
 
 ```
----
+
+</details> 
+
+<details>
+<summary><strong>⚙ Merge conflict nedir, nasıl çözülür?</strong></summary>
+<br>
+
+### Merge Conflict nedir?
+
+- Merge conflict, iki farklı branch (şube) üzerinde aynı dosyanın aynı satırlarında farklı değişiklikler yapıldığında ortaya çıkar.
+
+- Git, hangi değişikliğin doğru olduğunu kendi başına karar veremez. Bu durumda “çatışma” (conflict) oluşur.
 
 </details>
