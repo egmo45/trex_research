@@ -1,4 +1,4 @@
-## 1. Modern Yazılım Geliştirme Pratikleri
+ ## 1. Modern Yazılım Geliştirme Pratikleri
 
 <details>
 <summary><strong>🗃 Git nedir? GitHub nedir?</strong></summary>
@@ -646,6 +646,7 @@ jobs:
 
 - **Dezavantaj: Cross-platform değil, modern uygulamalar için sınırlı**
 <br>
+
 ### 2 .NET Core:
 
 - **Platform: Cross-platform (Windows, Linux, Mac)**
