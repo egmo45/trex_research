@@ -709,6 +709,106 @@ jobs:
 - **Windows, Linux ve macOS üzerinde resmi destek alır.**
 
 - **Masaüstü (WinForms, WPF) kısmı sadece Windows’a özgü kalmıştır, ama diğer alanlarda (Web, Blazor, MAUI, konsol, API, IoT) tüm platformlarda çalışır.**
+</details>
+
+<details>
+
+<summary><strong>Senkron ve Asenkron Programlama</strong></summary>
+
+## Senkron Programlama: 
+
+- **Senkron programlama, bir işlem tamamlanmadan diğer işlemlerin başlamamasını gerektiren bir programlamadır. Bu tür bir programlama tarzında, bir işlem veya görev diğerlerinin önünde olmalı ve bu işlem tamamlanana kadar diğer işlemler beklemelidir. Bu durum, işlemlerin belirli bir sıraya göre gerçekleştirilmesini sağlar. Yani bir işlem tamamlanmadan diğer bir işleme geçiş olmaz. Ayrıca dezavantaj olarak bir işlem uzun sürerse, diğer işlemler onun tamamlanmasını beklemek zorunda kalır. Bu da programın genel performansını olumsuz etkileyebilir.**
+
+###  🟠 Senkron Programlamaya Pythondan Örnek: 
+```
+import time
+
+print("1. Adım: Veri indiriliyor...")
+time.sleep(3)  # 3 saniye bekliyor
+print("2. Adım: Veri işleniyor...")
+time.sleep(2) # 2 saniye bekliyor
+print("3. Adım: İşlem tamamlandı.")
+
+# İşlemler göründüğü gibi tek tek çalışırlar bir işlem tamamlanmadan diğer bir işlem çalışmaz.
+
+```
+
+---
+
+## Asenkron Programlama: 
+
+- **Asenkron programlama, işlemlerin birbirini beklemeksizin eş zamanlı olarak çalıştığı bir programlama modelidir. Bu programlama tarzında işlemlerin birbirini beklemek gibi bir zorunluğu yokturidir. Bu yaklaşımda, her işlem kendi başına ve bağımsız bir şekilde çalışır. Ayrıca Bir işlem uzun sürüyorsa (örneğin dosya okuma, ağ isteği, veritabanı sorgusu vs.), program o işlem bitene kadar beklemez ve başka işleri yapmaya devam eder. Asenkron programlama, özellikle birden çok işlemi aynı anda yürütmek isteyen uygulamalar için oldukça faydalıdır. Ancak dezavantajı olarak İşlemler arasındaki koordinasyon ve hata yönetimi gibi konular meydana gelebilir ve kodda bir hata çıkarsa düzeltmek uzun zamanlar alabilir**
+
+
+###  🟠 Asenkron Programlamaya Pythondan Örnek: 
+```
+import async
+
+async def main():
+    print("1. Adım: Veri indiriliyor...")
+    await asyncio.sleep(3)  # 3 saniye bekle (asenkron)
+    print("2. Adım: Veri işleniyor...")
+    await asyncio.sleep(2)
+    print("3. Adım: İşlem tamamlandı.")
+
+asyncio.run(main())
+
+# İşlemler duraklama olmadan çalışırlar veriler işlenir ve hemen sonuca varılır
+
+```
+
+--- 
+
+### Asnyc, Await, Task ve ConfigureAwait Nedir? 
+
+ **1 - Task Nedir?:**
+
+- **Task .NET’te asenkron işlemin temsilcisidir. “Gelecekte bir değerin/işlemin tamamlanacağını” gösterir.**
+
+- **Task → geriye değer döndürmeyen asenkron işlem.**
+
+- **Task<T> → geriye T tipi bir değer döndüren asenkron işlem.**
+
+<br>
+
+**2 - Asnyc Nedir?:**
+
+- **Bir metodu asenkron yapar ve await kullanılmasına izin verir.**
+
+- **Async koymak kodu otomatik olarak paralel çalıştırmaz; sadece await ile birlikte asenkron akışı sağlar.**
+
+ <br>
+
+**3 - Await Nedir?**
+
+- **Await bir Task’in tamamlanmasını asenkron olarak bekleyen bir koddur**
+
+- **Beklerken çağıranı bloklamaz; method geri kalan kodu task bitince devam ettirir.**
+
+- **await kullanan method derhal tamamlanmaz çağırana Task döner. Çağıran kod await ederse, akış orada bekler ama thread bloklanmaz.**
+
+---
+
+**Dipnot: Thread hakkında ufak bir bilgi** 
+
+- **Thread’ler program kodu, data, dosyalar gibi işletim sistemi kaynaklarını ortak kullanır. Eğer bir process, birden fazla thread’e sahipse; birden fazla görevi eş-zamanlı yapabilir.**
+
+- **Her thread’in kendi call stack’i vardır (yani kendi yürütme sırası)**
+
+---
+
+**4 - ConfigureAwait Nedir?:**
+
+- **ConfigureAwait Herhangi bir veya Task<T> nesnesinde, anahtar sözcüğün bir görevi beklerken nasıl davranacağını yapılandırmak için kullanılabilen bir yöntemdir adında bir Boole parametresi alır ve sonraki devamın, awaitgörevi başlatan bağlamla aynı bağlamda çalışıp çalışmayacağını belirler.**
+
+- **Kısacası: Await ile bir Task beklerken, ConfigureAwait(bool) çağırarak await sonrasında kodun hangi context’te (thread veya senkronizasyon bağlamında) devam edeceğini belirlersin.**
+
+
+
+<br>
+
+
+
 
 
 </details>
