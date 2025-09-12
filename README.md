@@ -593,10 +593,10 @@ jobs:
 <br>
 <br>
 
-## 2. .NET Ekosistemi
+## 2.🖥 .NET Ekosistemi
 
 <details> 
-<summary><strong>🖥.NET nedir? Tarihçesi, amacı, neden kullanılır?</strong></summary>
+<summary><strong>.NET nedir? Tarihçesi, amacı, neden kullanılır?</strong></summary>
 <br>
  
 - **.NET, Microsoft tarafından geliştirilmiş bir yazılım geliştirme platformudur. Amacı Windows, web, mobil ve bulut uygulamaları geliştirmeyi kolaylaştırmak. Özellik: Farklı programlama dilleri ve cihazlar için ortak bir altyapı sağlar. Özetle .NET, geliştiricilere güçlü ve esnek bir yazılım geliştirme ortamı sunar.**
@@ -678,7 +678,7 @@ jobs:
 
 - **Avantaj: .NET Framework ve .NET Core birleşti → tek platform Modern uygulamalar için optimize  MAUI ile cross-platform mobil ve masaüstü desteği**
 
-- **Dezavantaj: Çok eski projeler için uyumluluk sorunları olabilir özellikle NET 5 ve sonrasında problem yaşanabilir**
+- **Dezavantaj: Çok eski projeler için uyumluluk sorunları olabilir özellikle NET 5 ve öncesinde problem yaşanabilir**
 
 <br>
 
@@ -851,12 +851,12 @@ asyncio.run(main())
 
 <summary><strong>Web sunucusu nedir? API nedir? API türleri</strong></summary>
 
-**WEB Sunucusu Nedir?:** 
+### WEB Sunucusu Nedir?:
 
 - **Web sunucusu, HTTP(Hypertext Transfer Protocol)veya HTTPS(HTTP Secure) protokolü üzerinden gelen istekleri alan, işleyen ve yanıt veren bir yazılım veya donanım sistemidir. HTML,CSS,JS gibi yazılım dillerinin oluşturdukları istekleri alır ve geri gönderir diğer  Kısaca API, yazılımların birbirine “konuşma dili” olarak düşünülebilir.kaynakların içerğini yollar eğer yollayamazsa hata kodları verir(İsteğe karşılık 200 OK, 404 Not Found veya 500 Internal Server Error gibi HTTP durum kodları döndürür.) Bu iletişim süreci şu şekilde işler. istemcinin belirli bir URL (Uniform Resource Locator) ile iletişim talep etmesiyle başlar. Bu istek, sunucuya HTTP protokolü kullanılarak iletilir. Ardından talep istenilen sonuca varırsa geri karşılık olarak istemciye geri yolla rHTTPS ile veri şifreleme yaparGüvenlik duvarları ve erişim kontrolü hazırlar Ayrıca Backend uygulamaları (Python, Java, C#, PHP) genellikle web sunucusu üzerinden çalıştırılır. Kullanıcı tarayıcıdan bir istek gönderdiğinde web sunucusu, backend uygulamasına iletir ve gelen veriyi kullanıcıya sunar.**
 
 
-**API Nedir:** 
+### API Nedir:
 
 - **Günümüz yazılım dünyasında uygulamalar ve servisler birbirleriyle sürekli iletişim halindedir. Bu iletişimi sağlayan köprülerden biri API (Application Programming Interface – Uygulama Programlama Arayüzü)’dür. API, farklı yazılımların birbirleriyle güvenli ve standart bir şekilde veri alışverişi yapmasını sağlar.Geliştiriciye hazır fonksiyon ve metodlar sunar. Uygulama veya sistemlerin birbirine doğrudan müdahale etmeden iletişim kurmasını sağlar. Kullanım alanı evrenseldir Web ve Mobil Uygulamalarda Backend ile frontend arasındaki veri akışı API üzerinden sağlanır. Üçüncü Parti Servisler: Örn. Google Maps, Twitter, ödeme sistemleri (PayPal, Stripe) API ile entegre edilir. Uygulamalar ayrı ayrı geliştirilip API üzerinden birbirine bağlanabilir. Aynı API, farklı uygulamalar tarafından tekrar tekrar kullanılabilir.**
 
@@ -887,25 +887,6 @@ asyncio.run(main())
 - **Birden fazla servisi birleştirip tek uç noktadan erişim sunan API’lerdir. Arada köprü görevi görür ve iletişim ağı sağlar genelde bu tür API'ler farklı uygulamalardan veri ihtiyacı olduğu zaman veya bir müdahale olması gerektiği zaman kullanılır Bu sayede geliştiriciler gelen verileri tek tek yönetebilirler**
 
 
----
-
-
-
-### API Protokol Türleri Nelerdir?:
-
-- **API (Application Programming Interface – Uygulama Programlama Arayüzü), uygulamaların birbirleriyle veri alışverişi yapmasını sağlayan bir köprüdür. Ancak tüm API’ler aynı şekilde çalışmaz; farklı protokoller ve standartlar kullanırlar. Bu nedenle API’ler çeşitli türlere ayrılır.**
-
-### 1. REST API (Representational State Transfer)
-
-- **HTTP protokolü üzerine kurulmuş, veri alışverişini genellikle JSON veya XML formatında gerçekleştiren API türüdür. Stateless bir duruma sahiptir yani kullanıcının durumunu saklamaz CRUD (Create, Read, Update, Delete) işlemleri için uygundur Basit, esnek ve yaygın kullanılır daha çok Web veya mobil uygulamalarda tercih edilir**
-
-### 2. SOAP API (Simple Object Access Protocol)
-
-- **Türkçesi Basit Nesne Erişim Protokolü, dağıtık yapıda bulunan web servislerinin iletişimi gerçekleştirmek üzere kullanılan Sunucu XML tabanlı, sıkı kurallara sahip, güvenli veri transferi sağlayan API türüdür. Daha fazla güvenlik ve hata yönetimi sağlar Kurumsal ve banka uygulamalarında tercih edilir Katı kuralları**
-
-### 3. GraphQL API 
-
-- **Facebook tarafından geliştirilen bu API açık kaynaklı bir veri sorgulama ve işleme dili ve bu sorguları yerine getirmek için yazılmış bir uygulamadır istemcinin veriyi tam anlamıyla çekmesini sağlar. Esnek ve istemciye özel bir veri sunar**
 
 </details>
 
@@ -913,6 +894,225 @@ asyncio.run(main())
 
 <summary><strong>HTTP nedir? HTTP metodları: GET,POST,PUT,DELETE</strong></summary>
 
+### HTTP Nedir?
 
+- **HTTP, açılımıyla HyperText Transfer Protocol, internet üzerinde istemci (client) ile sunucu (server) arasında iletişim sağlayan iletişim protokolüdür. Bir tarayıcıdan www.ornek.com yazdığınızda, tarayıcı (istemci) sunucuya bir HTTP isteği (request) gönderir. ve HTTP cevap (response) gönderir bu cevapta genelde HTML,JSON,resim,video gibi veriler olur. Yani HTTP WEB dünyasının dili diyebiliriz HTTP'de her istek bağımsız ilerler HTTP önceki şeyleri hatırlamaz stataless(durumsuz) bir protokole sahiptir kimlik doğrulama benzeri işlerde hepimizin hemen hemen aşina olduğu çerezler(cookies),token,session gibi ek yöntemleri sık sık kullanır**
+
+### HTTP Metodları Nelerdir?
+
+ **GET : Sunucudan veri çekmek için kullanılan bir metoddur URL üzerinden bir parametre gönderir belirtilen URL'den veriyi almak için kullanılır kısaca GET metodu Sunucudan veriyi çekmek için tarayıcıdan gönderilen bir isteği temsil ede***
+
+###  🟠 GET Metodu Örnek: 
+```
+GET /sayfa?parametre1=deger1&parametre2=deger2 HTTP/1.1
+Host: www.ikea.com
+
+```
+---
+
+**POST : Belirtilen URL’e yeni bir kaynak eklemek için kullanılır sunucudan veri ister sadece verileri okur değiştirmez aynı POST’u tekrar edersen, tekrar veri eklenir  GET’ metodundan farklı olarak, POST verileri URL üzerinden değil, genellikle HTTP gövdesi içinde taşınır. Genellikle veritabanına bir veri eklemek için kullanılmakadır**
+
+###  🟠 POST Metodu Örnek: 
+```
+POST /form HTTP/1.1
+Host: www.bayramalacam.com
+Content-Type: application/x-www-form-urlencodedusername=bayram&password=1
+```
+
+---
+
+**PUT : Amacı başlıca Sunucudaki kaynağı tamamen güncellemek veya oluşturmak. belirtilen URL’deki var olan kaynağın tamamını veya bir kısmını güncellemek için kullanabilir Idempotent(Bir işlemi aynı şekilde tekrar tekrar yapmanın sonucu değişmiyorsa, o işlem idempotenttir.) bir metoddur**
+
+###  🟠 PUT Metodu Örnek: 
+```
+PUT /user/update/2 HTTP/1.1
+Host: www.bayramalacam.com
+Content-Type: application/json{
+"username": "bayram",
+"password": "12345"
+}
+```
+
+---
+
+
+**DELETE : Amacıda isminden anlaşılacağı gibi Sunucudan kaynağı silmektir Idempotenttir aynı DELETE tekrar edilirse zaten silinmiş olur, hata vermez.**
+
+###  🟠 DELETE Metodu Örnek: 
+```
+
+DELETE /user/delete/2 HTTP/1.1
+Host: www.bayramalacam.com
+
+```
+--- 
+
+
+</details>
+
+
+<details>
+
+<summary><strong>RESTful Servislerin Çalışma Mantığı</strong></summary>
+
+### REST ve RESTful Web Servis Kavramı:
+
+**1. REST Nedir?**
+
+- **REST (Representational State Transfer) oy Fielding tarafından 2000’lerde tanımlanmış bir mimari stildir protokol olmamakla birlikte amacı Web üzerinde kaynaklara (resources) erişimi standart ve basit yöntemlerle yapmaktır Kısacası 2000 yılında bir sunucu ve istemci arasında hızlı ve kolay iletişimi sağlamak amacıyla ortaya cıkmış bir servis yapısıdır. Http protokolü ile çalışır. Açılımı Representational State Transfer dır.**
+
+<br>
+
+**2. RESTful Web Servis Nedir?**
+
+- **RESTful Web Servis kısaca özetlemek gerekirse REST prensiplerine göre tasarlanmış web servisi diyebiliriz HTTP metodlarıyla kaynaklarını yöneten bir API'dir GET,POST,PUT,DELETE gibi bir çok metodu kullanır URI ile kaynaklarını tanımlar veri formatı olarak genelde JSON veya XML kullanmaktadır Stateless ve idempotent kurallarına uymaktadır**
+
+<br>
+
+### Çalışma Mantığı:
+
+- **İstemci : kısaca kullanıcya hizmet verir ve veri gösterir işlem yapmaz sadece sunucuda olan veriyi kullanıcıya gösterrir. Web tarayıcısı, mobil uygulama veya başka bir servis olabilir. Örnek olarak Google,Firefox Mobil olarak ise IOS,Android örnek gösterilebilir. Sunucu değişse bile istemci sorunsuz çalışır**
+
+- **Sunucu : Veriyi saklar işler ve istemciye kullanıcıya sunması için ayarlar iş mantığı ve veri yönetiminden sorumludur İstemci bir konuda veri istediğinde ona sunmakla görevli olandır Sunucu DB'den gerekli veriyi çeker ve kullanıcıya gösterir**
+
+- **HTTP Çalışması : RESTful servislerde istemci ile sunucu arasındaki iletişim HTTP üzerinden olur bu yüzden HTTP çok önemli bir rol alır. İlk adım olarak istemci isteği oluşturur ardından URL belirlenir hangi kaynağa erişmek istediğini belirler HTTP metodu ne yapmak istediğini belirtir (GET,POST,DELETE,PUT) İkinci Adımda sunucu isteği alır ve yorumlar URL ve HTTP metoduna göre hangi kaynak olacağının hedefini belirler gerekirse DB'ye erişir veya iş mantığını çalıştırır Üçüncü Adımda ise sunucu reponse(yanıtı) gönderir Örn: HTTP statü kodu vs..**
+
+- **DİPNOT : RESTful servisler stateless çalışır. Her HTTP isteği bağımsızdır, sunucu önceki isteği hatırlamaz. Yani Sunucu, istemcinin daha önce ne yaptığını bilmez; gerekli tüm bilgiyi her istekte istemci gönderir. HTTP isteği sunucuya "Ben bunu yapmak istiyorum." demesidir ancak Stateless sunucu öncekileri hatırlamaz her istek bağımsızdır** 
+
+</details>
+
+<details>
+
+<summary><strong>JSON veri formatı ve kullanım amacı</strong></summary> 
+
+### JSON Nedir ve Kullanım Amaçları Nelerdir? 
+ 
+- **JSON'un açılımı JavaScript Object Notation demektir Amacı ise veriyi insan ve makine tarafından okunabilir şekilde taşımak. Çoğu programlama dili tarafından kolaylıkla anlaşılabilmektedir metin tabanlı ve hafif bir formata sahiptir JSON bir dosya veya bir kod değildir verileri depolamak veya aktarmar, iletmek gibi amaçlarla kullanılan basit bir formattır. JSON genellikle WEB uygulamaları ve sunucular arasında veri göndermek için kullanılır. Birçok dilde özellikle popüler olan C#,Python,Kotlin,PHP,Javascripit gibi bir çok dilde anlaşılmasını basitleşriri makinelerin ve insanların okumasını sağlayarak kodu veya dosyayı evrenselleştirir.**
+
+### 🟠 JSON Veri Örneği:
+
+```
+{
+  "id": 101,
+  "name": "Bruce Wayne",
+  "email": "bruce@example.com",
+  "isActive": true,
+  "age": 25,
+  "skills": ["JavaScript", "Python", "HTML"],
+  "address": {
+    "street": "Batcave.",
+    "city": "Gotham City",
+    "zip": "34000"
+  }
+```
+
+### Açıklaması : 
+
+- **"id": 101, Number tipindedir Kullanıcıya verilen numara**
+- **"name": "Bruce Wayne", String tipinde. Kullanıcının Adı ve Soyadı**
+- **"email": "bruce@example.com", String tipinde. Kullanıcının Emaili**
+- **"isActive": true, Boolean tipinde. Kullanıcının hesabı aktif mi, değil mi.**
+- **"age": 25, Number tipinde, Kullanıcının Yaşı**
+- **"skills":("Javascript", "Python", "HTML"), Array tipinde Kullanıcının özellikleri ve bildiği diller.**
+- **"adress":Object (iç içe nesne). Kullanıcının adres bilgilerini kapsar: "Street": "Batcave" "City": "Gotham City" "Zip": "3400"**
+</details>
+
+<details>
+
+<summary><strong>SOAP ve GraphQL nedir Rest'ten Farkları.</strong></summary>
+
+### API Protokol Türleri Nelerdir?:
+
+- **API (Application Programming Interface – Uygulama Programlama Arayüzü), uygulamaların birbirleriyle veri alışverişi yapmasını sağlayan bir köprüdür. Ancak tüm API’ler aynı şekilde çalışmaz; farklı protokoller ve standartlar kullanırlar. Bu nedenle API’ler çeşitli türlere ayrılır.**
+
+### 1. REST API (Representational State Transfer)
+
+- **HTTP protokolü üzerine kurulmuş, veri alışverişini genellikle JSON veya XML formatında gerçekleştiren API türüdür. Stateless bir duruma sahiptir yani kullanıcının durumunu saklamaz CRUD (Create, Read, Update, Delete) işlemleri için uygundur Basit, esnek ve yaygın kullanılır **
+
+### 2. SOAP API (Simple Object Access Protocol)
+
+- **Türkçesi Basit Nesne Erişim Protokolü, dağıtık yapıda bulunan web servislerinin iletişimi gerçekleştirmek üzere kullanılan Sunucu XML tabanlı, sıkı kurallara sahip, güvenli veri transferi sağlayan API türüdür. Daha fazla güvenlik ve hata yönetimi sağlar Kurumsal ve banka uygulamalarında tercih edilir Katı kuralları**
+
+### 3. GraphQL API 
+
+- **Facebook tarafından geliştirilen bu API açık kaynaklı bir veri sorgulama ve işleme dili ve bu sorguları yerine getirmek için yazılmış bir uygulamadır istemcinin veriyi tam anlamıyla çekmesini sağlar. Esnek ve istemciye özel bir veri sunar Fazla veya eksik veri çekme derdi yoktur İstemci “hangi alanları istiyorum” diye sorgu yazar. Veri JSON olarak response yapar**
+
+
+---
+
+### Arasındaki Farklar ve Detaylar:
+
+# SOAP, REST ve GraphQL Karşılaştırma Tablosu
+
+| Özellik             | SOAP                                | REST                                | GraphQL                              |
+|---------------------|-------------------------------------|-------------------------------------|---------------------------------------|
+| Protokol            | Katıdır XML tabanlı mesajlaşma     | HTTP üzerinden JSON/XML destekler   | Tek endpointi vardır genelde JSON      |
+| Veri Formatı        | XML                                | JSON, XML, YAML, Text               | JSON                                  |
+| Esneklik            | Katı kurallı                       | Daha esnek                          | Çok esnek, sadece istenilen veri gelir|
+| Performans          | Görece yavaş (XML + fazlalık)      | Orta seviye                         | Yüksek (gereksiz veri yok)            |
+| Güvenlik            | WS-Security, yüksek güvenlik       | HTTPS, OAuth, JWT gibi ek çözümler  | HTTPS, JWT gibi çözümler              |
+| Kullanım Alanı      | Bankacılık, finans, devlet sistemleri | Web servisleri, mobil API’ler      | Modern web ve mobil uygulamalar    |
+| Öğrenme Eğrisi      | Zor                                | Orta                                | Başlangıçta zor ama esnek             |
+</details>
+
+<br>
+<br>
+
+## 🖨 ASP.NET
+
+<details> 
+
+<summary><strong>ASP.NET ve ASP.NET Core nedir? Avantajları, farkları</strong></summary>
+
+### ASP.NET Nedir?
+
+- **Microsoft’un geliştirdiği bir web uygulama çatısı (framework). 2002’den itibaren .NET Framework üzerine inşa edilmiştir. C#, VB.NET gibi dillerle çalışır WEB Forms, MVC, Web API gibi farklı mimarileri destekler. Yalnızca Windows üzerinde çalışır. Avantajları sırasıyla Visual Studio ile güçlü geliştirme ortamı sunmaktadır. Hazır kütüphanesi ve kontrolleri sayesinde çok tercih edilir Geniş topluluk ve uzun yıllar kullanılmış olmanın tecrübesi vardır**
+
+<br>
+
+### ASP.NET Core Nedir?
+
+- **Microsoft’un 2016’da çıkardığı yeni nesil ASP.NET sürümüdür. Baştan sıfırdan yazılmıştır ancak açık kaynak ve platform bağımsızdır. Windows, Linux, macOS üzerinde çalışabilir. Hem web uygulamaları hem RESTful API’ler geliştirmek için kullanılır. Daha hafif, hızlı ve modülerdir. Avantajları sırasıyla Cross platform olmasıASP.NET’e göre çok daha hızlı olması İhtiyacın olan paketleri NuGet'ten ekleyebilmek gereksiz yük yok. GitHub'ta oldukça topluluk katkısı bulunmakta**
+
+
+# ASP.NET vs ASP.NET Core — Karşılaştırma Tablosu
+
+---
+
+## Karşılaştırma Tablosu
+
+| Özellik            | ASP.NET (.NET Framework) | ASP.NET Core                                            |
+| ------------------ | ------------------------ | ------------------------------------------------------- |
+| **Çıkış Yılı**     | 2002                     | 2016                                                    |
+| **Çalışma Ortamı** | Sadece Windows           | Windows, Linux, macOS                                   |
+| **Performans**     | Daha ağır                | Çok daha hızlı ve hafif                                 |
+| **Açık Kaynak**    | Hayır                    | Evet                                                    |
+| **Mimari**         | Monolitik                | Modüler                                                 |
+| **Sunucu**         | IIS’e bağımlı            | Kendi Kestrel sunucusu var; IIS/NGINX/Apache ile uyumlu |
+| **Gelecek**        | Yeni özellikler sınırlı  | Microsoft’un odak noktası, aktif gelişiyor              |
+
+---
+
+</details>
+
+<details> 
+
+<summary><strong>MVC nedir, ne için kullanılır?</strong></summary>
+
+### MVC Nedir?
+
+- **MVC aslında yazılım geliştirmede kullanılan bir mimari desendir (Model – View – Controller). Özellikle web uygulamaları ve masaüstü yazılımlarında tercih edilir. Amacı, uygulamanın farklı sorumluluklarını ayırarak daha düzenli, bakımı kolay ve test edilebilir bir yapı kurmaktır.  MVC 3 katmandan oluşmaktadır ve katmanları birbirinden bağımsız (birbirini etkilemeden) olarak çalışmaktadır.**
+
+- **Model : Uygulamanın veri katmanıdır. Veritabanı işlemleri, iş kuralları, veriyle ilgili mantık burada bulunur ve veri erişim (data access) işlemleri de bu bölümde gerçekleştirilmektedir.**
+
+- **View : Kullanıcıya gösterilen arayüzdür. HTML, CSS, JavaScript (veya başka UI teknolojileri) bu kısımda yer alır. İşin sadece “gösterme” kısmıyla ilgilenir. Front-End olarak çalışır. Bu bölümde projenin kullanıcılara sunulacak olan HTML dosyaları gibi şeyler görünür.**,
+
+- **Controller : Kullanıcıdan gelen istekleri karşılar. İstekleri Model ile View arasında köprü görevi görerek yönetmektedir Örneğin Bir kullanıcı form doldurup gönderdiğinde, controller bu isteği alır, Model’e gönderir, işlenmiş veriyi View’a iletir.**
+
+<br>
+
+### MVC Ne İçin Kullanılır?
+
+- **MVC Başlıca Kodun daha düzenli olması her şey tek yerde değil, ayrı ayrı katmanlarda. Bakım kolaylığı sağlar Test edilebilirliği artırır yeniden kullanabilirlik sağlar Web geliştirmede: ASP.NET MVC, Django (Python), Ruby on Rails, Spring MVC (Java).Masaüstü uygulamalarda: JavaFX, bazı .NET WPF projelerinde sık sık görülür.**
 
 </details>
