@@ -1,7 +1,7 @@
- ## 1. Modern Yazılım Geliştirme Pratikleri
+ ## 1. 🗃 Modern Yazılım Geliştirme Pratikleri
 
 <details>
-<summary><strong>🗃 Git nedir? GitHub nedir?</strong></summary>
+<summary><strong> Git nedir? GitHub nedir?</strong></summary>
 <br>
 
 ### 🔹 Git
@@ -24,7 +24,7 @@
 
 <details> 
 
-<summary><strong>📂 Temel Git komutları: init, clone, add, commit, push, pull, branch, merge..</strong></summary>
+<summary><strong> Temel Git komutları: init, clone, add, commit, push, pull, branch, merge..</strong></summary>
 <br>
 
 **1. Git İnit.**
@@ -864,13 +864,30 @@ asyncio.run(main())
 
 ### API Türleri Nelerdir:
 
-- **Herkese Açık API’ler (Public APIs)**
+ **Herkese Açık API’ler (Public APIs)**
+
+- **Herkesin erişimine açık, dokümantasyonu bulunan API’ler. Örn: Google Maps API, OpenWeather API Başka bir ifadeyle, Public API’ler, bir işletmenin iç sistemleri veya hizmetleri ile dış paydaşlar arasında bağlantı kurarak iş birliğini teşvik ederler hizmetleri veya verileri etrafında daha geniş bir ekosistem oluşturmasına olanak tanır.**
+
+<br>
+
+ **Partner API’ler**
+
+- **Yalnızca şirket ortaklarına açılan bir API'dir yarı kapalı yarı açık gibi düşünülebilir bu API bağlantısı resmi lisanslara sahip bir bağlantıdır. Genel API'lere göre çok daha sağlamdır bu yüzden hem iş yeri hemde lisanslı çalışanlar için daha güvenli ve emniyetli bir iletişim ağı sunar**
+
+<br>
+
+**Dahili API’ler (Internal APIs)**
+
+- **Dahili API’ler (Internal APIs,Private APIs olarakta geçer)  yalnızca işletmelerin dahili kullanımı için paylaşılır. Bu yüzden de sadece işletme sınırları içinde erişilir. Genel veya iş ortağı API’lerinin aksine dışarıdan bir tarafın erişimine tamamen kapalıdır dış saldırılara daha kapalı ve güvenlidir Dış geliştirici ekosistemine kapalıdır, ürün yayılımını artırmaz.**
+
+<br>
+
+**Bileşik API'ler (Composite API's)**
+
+- **Birden fazla servisi birleştirip tek uç noktadan erişim sunan API’lerdir. Arada köprü görevi görür ve iletişim ağı sağlar genelde bu tür API'ler farklı uygulamalardan veri ihtiyacı olduğu zaman veya bir müdahale olması gerektiği zaman kullanılır Bu sayede geliştiriciler gelen verileri tek tek yönetebilirler**
 
 
-
-
-
-
+---
 
 
 
@@ -885,5 +902,17 @@ asyncio.run(main())
 ### 2. SOAP API (Simple Object Access Protocol)
 
 - **Türkçesi Basit Nesne Erişim Protokolü, dağıtık yapıda bulunan web servislerinin iletişimi gerçekleştirmek üzere kullanılan Sunucu XML tabanlı, sıkı kurallara sahip, güvenli veri transferi sağlayan API türüdür. Daha fazla güvenlik ve hata yönetimi sağlar Kurumsal ve banka uygulamalarında tercih edilir Katı kuralları**
+
+### 3. GraphQL API 
+
+- **Facebook tarafından geliştirilen bu API açık kaynaklı bir veri sorgulama ve işleme dili ve bu sorguları yerine getirmek için yazılmış bir uygulamadır istemcinin veriyi tam anlamıyla çekmesini sağlar. Esnek ve istemciye özel bir veri sunar**
+
+</details>
+
+<details>
+
+<summary><strong>HTTP nedir? HTTP metodları: GET,POST,PUT,DELETE</strong></summary>
+
+
 
 </details>
