@@ -1631,6 +1631,561 @@ Dikkat: Daha sonra aynı nesneyle Update yapmak isterseniz önce Attach etmeniz 
 
 <details>
 
-<summary><strong></strong></summary>
+<summary><strong>Neden loglama yapılır? Log seviyesi nedir?</strong></summary>
+
+### Neden loglama yapılır? 
+
+ **Loglama, bir uygulamanın çalışma sürecinde gerçekleşen olayların kaydedilmesi işlemidir ve hem geliştirme hem de üretim ortamlarında kritik öneme sahiptir.**
+
+- **Hata Tespiti ve Debug (Hata Ayıklama) Uygulama beklenmedik şekilde çalıştığında loglar sorunun kaynağını bulmayı kolaylaştırır.**
+
+- **Performans Analizi İşlem sürelerini, yavaş endpoint’leri veya darboğazları izlemeye yardımcı olur.**
+
+- **Güvenlik ve Denetim (Audit Trail) Kullanıcı hareketleri, erişimler, yetkisiz giriş denemeleri loglanarak saldırılar veya uyumluluk ihlalleri takip edilir.**
+
+- **Operasyon ve İzleme Canlı sistemin sağlığı, servis durumları ve uyarılar loglarla takip edilir.**
+
+- **Karmaşık Sistemlerde İzlenebilirlik (Traceability) Mikroservis veya dağıtık sistemlerde isteklerin akışı takip edilebilir.**
+
+### Log Seviyesi Nedir? 
+
+ **Log seviyesi, loglanacak mesajın önem derecesini belirten bir kategoridir.**
+
+- **Trace : En ayrıntılı bilgi; genellikle debug ve geliştirme için.**
+
+- **Debug : Hata ayıklamaya yardımcı detaylı bilgiler.**
+
+- **Information : Normal çalışma sırasında önemli olaylar; örn. kullanıcı girişleri.**
+
+- **Warning : Beklenmeyen durumlar, ama uygulama çalışmasını sürdürür.**
+
+- **Error : Hata oluştu; uygulamanın bazı işlevleri etkilenmiş olabilir.**
+
+- **Critical / Fatal : Kritik hatalar; uygulama çalışamaz veya önemli veri kaybı riski var.**
 
 </details>
+
+<details>
+
+<summary><strong>ASP.NET Core'da logging altyapısı</strong></summary>
+
+###  ASP.NET Core'da Logging Altyapısının İşleyişi : 
+
+ **ASP.NET Core, gelişmiş ve esnek bir logging altyapısı sağlar. Hem framework tarafından hem de uygulama tarafından kullanılabilir ve farklı log sağlayıcılarıyla kolayca entegre edilebilir. İşte detaylar:**
+
+- **Logging Servisi ve Dependency Injection : ASP.NET Core’da ILogger<T> interface’i ile logging yapılır. Servisler ve controller’lar DI (Dependency Injection) ile logger alır.**
+
+- **Log Seviyeleri : ASP.NET Core, logları şöyle seviyelerde kaydedebilir Trace, Debug, Information , Warning, Error, Critical.**
+
+- **Log Provider (Sağlayıcılar) : ASP.NET Core, logları farklı hedeflere gönderebilecek sağlayıcılar sunar: Console, Debugi EventSource/ Eventlog File / Third-Party**
+
+- **Yapılandırma (appsettings.json) : Log seviyelerini ortam veya kategori bazında ayarlayabilirsiniz.**
+
+</details>
+
+
+<details>
+
+<summary><strong>Global exception handling nasıl yapılır?</strong></summary>
+
+### Middleware ile Global Exception Handling: 
+
+ **Global exception handling, uygulamanın herhangi bir yerinde oluşabilecek hataları merkezi bir noktada yakalayarak yönetmek demektir. Bu, hem uygulamanın çökmesini önler hem de kullanıcıya veya log sistemine anlamlı bilgi göndermeyi sağlar. Global exception handling, uygulamanın herhangi bir yerinde meydana gelen hataların merkezi bir noktada yakalanması ve yönetilmesi sürecidir. Bu yöntemle: Global exception handling’in nasıl yapılacağı kullanılan platforma ve dile bağlıdır. Hadi genel olarak .NET ve JavaScript (Node.js/Express) üzerinden açıklayalım**
+
+### **1. .NET (C#) Global Exception Handling**
+- **ASP.NET Core’da**
+
+**ASP.NET Core’da global exception handling için Middleware kullanılır.**
+
+```
+public class GlobalExceptionMiddleware
+{
+    private readonly RequestDelegate _next;
+    private readonly ILogger<GlobalExceptionMiddleware> _logger;
+
+    public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
+    {
+        _next = next;
+        _logger = logger;
+    }
+
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
+        {
+            await _next(context); // Bir sonraki middleware veya request handler çalıştırılır
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unhandled exception occurred");
+            context.Response.StatusCode = 500;
+            context.Response.ContentType = "application/json";
+            await context.Response.WriteAsync(new
+            {
+                StatusCode = 500,
+                Message = "Internal Server Error"
+            }.ToString());
+        }
+    }
+}
+
+// Startup.cs veya Program.cs
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+```
+### **2. Node.js / Express Global Error Handling**
+
+- **Express uygulamasında global error handler, middleware ile yapılır.**
+
+```
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+
+// Örnek route
+app.get("/", (req, res) => {
+    throw new Error("Something went wrong!");
+});
+
+// Global error handler middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({
+        status: 500,
+        message: "Internal Server Error"
+    });
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
+```
+
+</details>
+
+
+<details>
+
+<summary><strong>UseExceptionHandler ve ILogger nasıl kullanılır?</strong></summary>
+
+### UseExceptionHandler ve ILogger nasıl kullanılır?
+
+**1. UseExceptionHandler Nedir? ve Nasıl Kullanılır? : UseExceptionHandler, ASP.NET Core middleware’lerinden biridir ve uygulamada oluşan unhandled exception’ları yakalamak için kullanılır. Bu middleware, hata oluştuğunda kullanıcıya özel bir sayfa veya mesaj göstermenizi sağlar.**
+
+- **Örnek bir controller’da kullanımı:**
+
+
+```
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (!env.IsDevelopment())
+    {
+        // Üretim ortamında özel hata sayfası kullan
+        app.UseExceptionHandler("/Home/Error");
+        app.UseHsts();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+    app.UseRouting();
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+
+
+```
+
+- **2. ILogger Nedir ve Nasıl Kullanılır? : ILogger, ASP.NET Core’un built-in logging framework’üdür. Hataları, uyarıları veya bilgi mesajlarını loglamak için kullanılır.**
+
+- **Örnek bir controller’da kullanımı:**
+
+```
+
+public class HomeController : Controller
+{
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        _logger.LogInformation("Index action çağrıldı.");
+        return View();
+    }
+
+    public IActionResult Error()
+    {
+        var exceptionFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+        if (exceptionFeature != null)
+        {
+            _logger.LogError(exceptionFeature.Error, 
+                "Hata oluştu: {Path}", exceptionFeature.Path);
+        }
+        return View();
+    }
+}
+
+``` 
+
+</details>
+
+<br>
+
+## 📦  8. Yazılım Geliştirme Prensipleri 
+
+<details>
+
+<summary><strong> SOLID prensipleri </strong></summary>
+
+### 1. S – Single Responsibility Principle (SRP) / Tek Sorumluluk Prensibi :
+
+- **Açıklama: Bir sınıfın yalnızca bir işi yapması ve yalnızca bir sorumluluğu olması gerekir.**
+
+- **Örnek :**
+
+```
+
+
+//  Sorumlulukları ayır
+class ReportSaver
+{
+    public void SaveReport() { /* kaydet */ }
+}
+
+class PDFGenerator
+{
+    public void GeneratePDF() { /* PDF oluştur */ }
+}
+```
+
+### 2. O – Open/Closed Principle (OCP) / Açık/Kapalı Prensibi : 
+
+- **Açıklama: Kod geliştirmeye açık, değişikliğe kapalı olmalıdır. Yani mevcut kodu bozmadan yeni özellik ekleyebilmeliyiz.**
+
+- **Örnek :**
+
+```
+interface IShape
+{
+    double Area();
+}
+
+class Circle : IShape
+{
+    public double Radius { get; set; }
+    public double Area() => Math.PI * Radius * Radius;
+}
+
+class Square : IShape
+{
+    public double Side { get; set; }
+    public double Area() => Side * Side;
+}
+
+// Alan hesaplama değişmedi, yeni şekil eklemek kolay
+```
+
+
+### 3. L – Liskov Substitution Principle (LSP) / Liskov Yerine Geçme Prensibi :
+
+- **Açıklama: Türetilmiş sınıflar, temel sınıfın yerine geçebilir ve beklenmeyen hatalara yol açmamalıdır.**
+
+- **Örnek :**
+
+```
+class Bird
+{
+    public virtual void Fly() { }
+}
+
+class Eagle : Bird { }
+class Ostrich : Bird
+{
+    public override void Fly() 
+    {
+        throw new NotImplementedException(); // LSP ihlali
+    }
+}
+```
+### 4. I – Interface Segregation Principle (ISP) / Arayüz Ayrımı Prensibi :
+
+**Açıklama: Küçük ve spesifik arayüzler kullan, istemci gereksiz metodlarla yüklenmesin.**
+
+**Örnek :**
+
+```
+interface IPrinter
+{
+    void Print();
+    void Scan(); // Tarama gerekmeyen cihazlar için gereksiz
+}
+
+// Ayrıştırılmış arayüz
+interface IPrinterDevice { void Print(); }
+interface IScannerDevice { void Scan(); }
+```
+
+### 5. D – Dependency Inversion Principle (DIP) / Bağımlılıkların Tersine Çevrilmesi :
+
+- **Açıklama: Yüksek seviyeli modüller, düşük seviyeli modüllere bağımlı olmamalı, her ikisi de arayüzlere bağımlı olmalı.**
+
+- **Örnek :** 
+
+```
+// İyi Örnek
+interface ILogger { void Log(string msg); }
+
+class FileLogger : ILogger { public void Log(string msg) { } }
+
+class UserService
+{
+    private readonly ILogger _logger;
+    public UserService(ILogger logger) { _logger = logger; }
+}
+```
+</details>
+
+<details>
+
+<summary><strong>Design Patterns: Singleton, Repository, Factory</strong></summary>
+
+### 1. Singleton Pattern (Tekil Nesne Deseni) Nedir?
+
+- **Bir sınıfın yalnızca bir tane örneğinin olmasını sağlar ve bu örneğe tüm uygulama genelinde erişim imkânı verir.** 
+
+**Ne zaman kullanılır?**
+
+- **Uygulama boyunca tek bir veritabanı bağlantısı olacaksa**
+
+- **Konfigürasyon bilgilerini merkezi olarak yönetmek için**
+
+- **Loglama işlemleri için**
+
+```
+public class Logger
+{
+    private static Logger _instance;
+    private Logger() { }
+
+    public static Logger Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new Logger();
+            return _instance;
+        }
+    }
+
+    public void Log(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+```
+
+### 2. Repository Pattern (Depo Deseni) Nedir?
+
+- **Veri erişimini ve iş mantığını birbirinden ayırır. Uygulama, veri kaynağının nasıl olduğundan bağımsız olarak Repository üzerinden veri ile çalışır.**
+
+**Ne zaman kullanılır?**
+
+- **Veritabanı işlemlerini merkezi bir yerde toplamak istiyorsanız**
+
+- **Kodun test edilebilirliğini artırmak istiyorsanız**
+
+### 3. Factory Pattern (Fabrika Deseni) Nedir?
+
+- **Nesne yaratmayı merkezi bir fabrikaya devreder. Yani hangi sınıfın oluşturulacağına karar vermek fabrikaya bırakılır.**
+
+**Ne zaman kullanılır?**
+
+- **Uygulama içerisinde farklı tipte nesneler yaratmanız gerekiyorsa**
+
+- **Nesne oluşturma süreci karmaşıksa veya bağımlılıkları gizlemek istiyorsanız**
+
+```
+public class Logger
+{
+    private static Logger _instance;
+    private Logger() { }
+
+    public static Logger Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = new Logger();
+            return _instance;
+        }
+    }
+
+    public void Log(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+```
+
+</details>
+
+<details>
+
+<summary><strong>Clean Code uygulama örnekleri</strong></summary>
+
+### Clean Code Nedir? 
+
+
+- **Clean Code (Temiz Kod) prensiplerinin pratik örneklerine bakalım. Bu örnekler, kodun okunabilir, anlaşılır ve bakımı kolay olmasını sağlar.**
+
+- **1. Anlamlı İsimler Kullanmak : Kötü Örnek - int d; // gün sayısı İyi Örnek - int numberOfDays; Değişken, fonksiyon ve sınıf isimleri amacını açıkça belirtmeli.**
+
+- **2. Fonksiyonları Küçük Tutmak** 
+
+- **Örnekler :**
+
+```
+
+## Kötü Örnek :
+
+void ProcessOrder(Order order) 
+{
+    ValidateOrder(order);
+    CalculateDiscount(order);
+    SaveOrder(order);
+    SendConfirmationEmail(order);
+}
+
+İyi Örnek :
+
+void ProcessOrder(Order order) 
+{
+    ValidateOrder(order);
+    ApplyDiscount(order);
+    PersistOrder(order);
+    NotifyCustomer(order);
+}
+```
+
+- **Fonksiyonlar tek bir iş yapmalı, birden fazla sorumluluk içermemeli.**
+
+---
+
+- **3. Yorumları Gereksiz Kullanma: **
+
+**Örnekler :**
+
+```
+
+## Kötü Örnek :
+
+// Bu fonksiyon siparişi kaydeder
+void SaveOrder(Order order) { ... }
+
+## İyi Örnek :
+
+void PersistOrder(Order order) { ... }
+```
+
+- **Kod kendini açıklıyorsa yorum gereksizdir; yorumlar ancak karmaşık iş mantığını açıklamak için kullanılmalı.**
+
+---
+
+- **4. Magic Number’lardan Kaçınmak : **
+
+**Örnekler :**
+
+```
+## Kötü Örnek :
+
+if (userAge > 18) { ... }
+
+## İyi Örnek :
+
+const int LegalAge = 18;
+if (userAge > LegalAge) { ... }
+```
+
+- **Sayılar veya stringler anlamlı sabitlerle ifade edilmeli.**
+
+--- 
+
+- **5. Anlamlı Sınıf ve Fonksiyon Yapısı :**
+
+**Örnekler :**
+
+```
+## Kötü Örnek : 
+
+class Utility
+{
+    void DoSomething() { ... }
+    void DoAnotherThing() { ... }
+}
+
+## İyi Örnekclass OrderService
+{
+    void ValidateOrder(Order order) { ... }
+    void CalculateDiscount(Order order) { ... }
+}
+```
+
+- **Sınıflar tek sorumluluk ilkesine (Single Responsibility Principle) uygun olmalı.**
+</details>
+
+<details>
+
+<summary>Ek:</summary>
+
+## Yazılım Mimari Desenleri 
+
+### **Layered, Clean Architecture, Microservices, Event-Driven, Hexagonal Architecture (Ports & Adapters) Nelerdir?**
+
+- **1. Layered Architecture (Katmanlı Mimari) Nedir? : Uygulama farklı katmanlara ayrılır; genellikle şu katmanlar vardır: Presentation Layer: Kullanıcı arayüzü ve kullanıcı taleplerini işler. Business/Domain Layer: İş kurallarını ve mantığı içerir. Data Access Layer: Veritabanı veya dış sistemlerle iletişimi sağlar. Özellikleri Kısaca : Katmanlar üstten alta doğru iletişim kurar. Her katman kendi sorumluluğuna odaklanır. Anlaşılır ve standart bir yapı sağlar. Test edilebilir ve yönetimi kolaydır. Ancak Katmanlar arası sıkı bağımlılık büyük projelerde esnekliği azaltır.**
+
+- **2. Clean Architecture (Temiz Mimari) Nedir? : Uygulamanın bağımlılıklarını içten dışa doğru düzenler. Domain (iş mantığı) en merkezde, framework ve dış sistemler en dıştadır Özellikleri Kısaca Domain bağımsızdır, dış sistemlere bağlı değildir. Kod test edilebilir ve sürdürülebilir olur. Uzun ömürlü ve karmaşık projelerde güçlü yapı sağlar. Bağımlılık yönetimi nettir. Ancak Başlangıçta karmaşık ve öğrenme eğrisi yüksektir.** 
+
+- **3. Microservices (Mikroservisler) Nedir? : Uygulama, birbirinden bağımsız çalışan küçük servislerden oluşur. Her servis kendi veritabanına ve iş mantığına sahiptir. Özellikleri Kısaca Servisler birbirinden bağımsızdır. Her servis farklı teknoloji ile geliştirilebilir. Kolay ölçeklenir ve bağımsız deploy edilebilir. Takımların paralel çalışmasını destekler. Ancak Dağıtık sistem karmaşıklığı artar. Servisler arası iletişim ve veri tutarlılığı yönetimi gerekir.**
+
+- **4. Event-Driven Architecture (Olay Tabanlı Mimari) Nedir? : Sistem bileşenleri olaylar (events) üzerinden iletişim kurar. Bir event oluştuğunda ilgili bileşenler bunu dinler ve tepki verir. Özellikleri Kısaca Asenkron iletişim vardır. Bileşenler gevşek bağlıdır Yüksek esneklik ve ölçeklenebilirlik sağlar. Gerçek zamanlı uygulamalar için uygundur. Ancak Hata ayıklama (debugging) zorlaşır. Event sıralama ve yönetimi karmaşık olabilir.**
+
+- **5. Hexagonal Architecture (Ports & Adapters / Altıgen Mimari) Nedir? : Uygulamanın çekirdek domain’i dışa bağımlı değildir. Portlar dış sistemlerle iletişim için tanımlanır, adapterlar ise bu portları uygular. Özellikleri Kısaca Domain merkezlidir. Dış sistem bağımlılıkları soyutlanmıştır. Test edilebilir, değişime dayanıklı bir yapı sağlar. Domain izolasyonu güçlüdür. Ancak Tasarım başta karmaşık görünebilir. Küçük projelerde fazla olabilir.**
+</details>
+
+<details>
+
+<summary><strong>Hangi senaryoda hangi mimari tercih edilir?</strong></summary>
+
+### 1. Layered Architecture (Katmanlı) 
+
+- **Tercih Edildiği Senaryolar : Küçük veya orta ölçekli uygulamalar Basit web uygulamaları veya CRUD sistemleri Takımların küçük ve deneyim seviyesinin orta olduğu projeler. Basit ve anlaşılır bir yapı isteyen, karmaşık dağıtık sistem gerektirmeyen projeler için uygun.**
+
+### 2. Clean Architecture (Temiz Mimari) 
+
+- **Tercih Edildiği Senaryolar : Uzun ömürlü ve büyük ölçekli projeler Domain mantığının korunması ve framework bağımsızlığı gereken projeler. Test edilebilirliği ve sürdürülebilirliği öncelikli projeler Karmaşık iş kuralları ve uzun süreli bakım gerektiren enterprise uygulamaları için ideal.**
+
+
+### 3. Microservices (Mikroservisler) 
+
+- **Tercih Edildiği Senaryolar: Büyük ölçekli sistemler Takımların bağımsız geliştirme ve deploy yapması gereken projeler Yüksek ölçeklenebilirlik ve farklı teknolojilerle servislerin geliştirilmesi gereken projeler. Dağıtık, büyüyen ve bağımsız servislerin kritik olduğu sistemler için uygun.**
+
+### 4. Event-Driven Architecture (Olay Tabanlı) 
+
+- **Tercih Edildiği Senaryolar: Gerçek zamanlı veri işleme gereken sistemler (finans, oyun, IoT) Asenkron ve gevşek bağlı bileşenlerin tercih edildiği sistemler Sistemlerin birbirine bağımlılığının minimum olması gereken durumlar. Olay tabanlı, esnek ve asenkron sistemler için ideal.**
+
+### 5. Hexagonal Architecture (Ports & Adapters / Altıgen)
+
+- **Tercih Edildiği Senaryolar: Domain mantığının dış bağımlılıklardan izole edilmesi gereken projeler Test edilebilirliğin yüksek öncelik olduğu sistemler Farklı dış sistemlerle entegrasyon gereken projeler. Domain izolasyonu ve test edilebilirlik öncelikli orta veya büyük ölçekli projeler için uygundur.**
+
+
+</details>
+
