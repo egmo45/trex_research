@@ -593,6 +593,8 @@ jobs:
 <br>
 <br>
 
+
+
 ## 2.🖥 .NET Ekosistemi
 
 <details> 
@@ -713,11 +715,35 @@ jobs:
 
 <details>
 
-<summary><strong>Senkron ve Asenkron Programlama</strong></summary>
+<summary><strong>Platformlar arası çalışabilir mi? (Windows, Linux, macOS)</strong></summary>
+
+- **1. .NET Framework vs .NET Core vs .NET 5+**
+
+- **.NET Framework: Sadece Windows için tasarlanmıştır. Windows uygulamaları (WPF, WinForms, ASP.NET Web Forms) çalıştırır.**
+
+- **.NET Core: Microsoft’un platformlar arası çözümüdür. Windows, Linux ve macOS üzerinde çalışabilir. ASP.NET Core, konsol uygulamaları, web API’ler oluşturmak için uygundur.**
+
+- **.NET 5, 6, 7, 8… (modern .NET): .NET Core’un devamı niteliğindedir ve tamamen platformlar arasıdır. Yeni projelerde tercih edilir.**
+
+</details>
+
+
+
+<details>
+
+ <summary><strong>Ek Maddeler</strong></summary>
 
 ## Senkron Programlama: 
 
 - **Senkron programlama, bir işlem tamamlanmadan diğer işlemlerin başlamamasını gerektiren bir programlamadır. Bu tür bir programlama tarzında, bir işlem veya görev diğerlerinin önünde olmalı ve bu işlem tamamlanana kadar diğer işlemler beklemelidir. Bu durum, işlemlerin belirli bir sıraya göre gerçekleştirilmesini sağlar. Yani bir işlem tamamlanmadan diğer bir işleme geçiş olmaz. Ayrıca dezavantaj olarak bir işlem uzun sürerse, diğer işlemler onun tamamlanmasını beklemek zorunda kalır. Bu da programın genel performansını olumsuz etkileyebilir.**
+
+**Çalışma şekli Runtime (CLR): .NET uygulaması, Common Language Runtime üzerinde çalışır. .NET Core ve sonrası için bu runtime platform bağımsızdır. SDK ve Tooling: .NET CLI (dotnet build, dotnet run) ile aynı kod Windows, Linux ve macOS’ta derlenip çalıştırılabilir.**
+
+### Kısaca özetlersek:
+
+- **Windows için .NET Framework → Sadece Windows**
+
+- **.NET Core / modern .NET → Platformlar arası (Windows, Linux, macOS)**
 
 ###  🟠 Senkron Programlamaya Pythondan Örnek: 
 ```
@@ -807,7 +833,7 @@ asyncio.run(main())
 <br>
 <br>
 
-## 🗄️ Backend Geliştirme Temelleri
+## 3. 🗄️ Backend Geliştirme Temelleri
 
 
 <details> 
@@ -1058,7 +1084,7 @@ Host: www.bayramalacam.com
 <br>
 <br>
 
-## 🖨 ASP.NET
+## 4. 🖨 ASP.NET
 
 <details> 
 
@@ -1114,5 +1140,497 @@ Host: www.bayramalacam.com
 ### MVC Ne İçin Kullanılır?
 
 - **MVC Başlıca Kodun daha düzenli olması her şey tek yerde değil, ayrı ayrı katmanlarda. Bakım kolaylığı sağlar Test edilebilirliği artırır yeniden kullanabilirlik sağlar Web geliştirmede: ASP.NET MVC, Django (Python), Ruby on Rails, Spring MVC (Java).Masaüstü uygulamalarda: JavaFX, bazı .NET WPF projelerinde sık sık görülür.**
+
+</details>
+
+<details>
+
+
+
+
+
+<summary><strong>Middleware nedir, nasıl çalışır?</strong></summary>
+
+### Middleware nedir?
+
+![1__DMAUqUzSweBvJBY5C_q0Q](https://github.com/user-attachments/assets/bde0786f-5007-459c-a8c1-0dbd30ac9b24)
+
+- **Basit bir web uygulamasında, istemciden gelen request’e karşılık olarak response gönderilmektedir Temel görevi, verilerin veya işlemlerin uçtan uca doğrudan gitmek yerine bu “ara katmandan” geçerek belirli kurallar, kontroller veya ek işlevlerden geçirilmesini sağlamaktır. Middleware uygulama ile donanım/sistem servisleri arasında çalışarak mesajlaşma, veri tabanı erişimi, dosya sistemine erişim gibi işlemleri kolaylaştırır. Birden fazla middleware arka arkaya çalışabilir (pipeline). Her biri gelen veriyi işleyebilir, değiştirebilir ya da sonraki adıma iletebilir. İstek cevap akışına bağlı olduğu için her türlü yazılım programında karşımıza çıkmaktadır.**
+
+
+
+### Nasıl Çalışır?
+
+![1_Cd1pj5NUN-3pz56nMzpNCQ](https://github.com/user-attachments/assets/7c847735-bc1e-45a6-97f1-822708b1e1ec)
+
+<br>
+
+- **Middleware’i gösterebilmek için basit bir loglama işlemi yapılır. Bir Web API projesi açılması gerekmektedir adım adım çalışması ve yazılması gerekmektedir. Önce istek(Request) sonra cevap(Response) gelir Kullanıcı tarayıcıdan veya istemciden bir istek gönderir İstek, uygulamanın ana iş mantığına (controller, handler) ulaşmadan önce bir dizi middleware’den geçer. İsteği inceleyebilir,durdurabilir,değiştirebilir,bir sonraki isteğe yönlendirebilir. Son middleware ise response oluşturur geri dönüş yolunda tekrar bütün middlewarelarden geçer üstüne yine birşeyler eklenip değiştirlebilir**
+
+</details>
+
+
+<details> 
+
+<summary><strong>Dependency Injection (DI) nedir, neden önemlidir?</strong></summary>
+
+### Depency Injection (DI) Nedir?
+
+- **yazılım geliştirmede kullanılan bir tasarım desenidir. Amacı, bir sınıfın ihtiyaç duyduğu (bağımlı olduğu) nesneleri kendi içinde oluşturmaması, bunun yerine dışarıdan sağlanmasıdır. IoC'Yi uygulamak için kullanılan bir tasarım modelidir yani Design Pattern'dir Bağımlılıkların taklit edilmesine veya ortadan kaldırılmasına olanak tanıdığından test için çok yararlı bir tekniktir. Bağımlılığı azaltır Sınıflar birbirine sıkı sıkıya bağlı olmaz.Kodlar farklı ortamlarda tekrar tekrar kullanılabilmektedir Nesne dışarıdan (constructor, setter ya da method aracılığıyla) sağlanır. Böylece sınıf bağımlılıkları bilmez, sadece kullanır.**
+
+### Neden Önemlidir?
+
+- **DI Yazılım Dünyasında çok önemlidir, Çünkü kodlara esneklik test edilebilirlik ve sürdürülebilirlik sunmaktadır sınıflar sıkı sıkıya birbirine bağlanmalar Örneğin gerçek veritabanına bağlanmak yerine, test için sahte bir repository kullanabilir WEB Uygulamaları API'Ler gibi birçok alanda kullanılabilmektedir. Modern frameworklerin (ASP.NET Core, Spring, Angular, Django vb.) çoğu DI üzerine kuruludur. Bu sayede framework’ün sunduğu özellikler (middleware, filtre, controller bağımlılıkları) otomatik çözülür.**
+
+### Katmanlar Nelerdir?
+
+- **Yazılım geliştirme sürecinde, sistemlerin okunabilir, bakımı kolay, test edilebilir ve genişletilebilir olması en önemli hedeflerdendir. Bu amaçla en yaygın kullanılan yaklaşımlardan biri katmanlı mimari (layered architecture)dir. Katmanlı mimaride yazılım bileşenleri, belirli sorumluluklara sahip katmanlara ayrılır ve bu katmanlar arasında belirlenmiş ilişkiler bulunur. Sırasıyla Sunum Kullanıcıyla doğrudan etkileşim kurar. Verileri ekrana yansıtır ve kullanıcıdan gelen girişleri işler. İş Mantığı (Business Logic) Katmanı Uygulamanın kurallarını, iş akışlarını ve hesaplamalarını barındırır.Sunum katmanından gelen talepleri işler, veri katmanıyla iletişime geçer. Veri Erişim (Data Access) Katmanı Veritabanı veya diğer kalıcı depolama sistemleriyle etkileşime girer.SQL sorguları, ORM (Entity Framework, Hibernate vb.) yapıları burada yer alır. Veri Tabanı (Database) Katmanı Uygulamanın verilerini saklayan en alt katmandır. SQL, NoSQL veya dosya tabanlı olabilir.**
+
+
+# DI Katmanları Diyagramı - Mermaid
+
+```
+mermaid
+graph TD
+    UI[UI Layer] -->|uses| Service[Service Layer]
+    Service -->|depends on via DI| Repository[Repository Layer]
+    Repository -->|accesses| Database[(Database)]
+
+    subgraph Dependency Injection
+        Service
+        Repository
+    end
+```
+
+
+###  🟠 DI Kullanımına Örnek: 
+
+// UserService.cs
+public class UserService
+{
+    private readonly INotificationService _notification;
+
+    // Constructor Injection: bağımlılık buradan gelir
+    public UserService(INotificationService notification)
+    {
+        _notification = notification;
+    }
+
+    public void Register(string username, string email)
+    {
+        // Kayıt işlemleri (DB vs.) burada olmalı; örnek için sadece bildirim:
+        _notification.Send(email, $"Hoş geldin {username}!");
+    }
+}
+```
+```
+---
+</details>
+<br>
+
+
+## 5 💾 Veritabanı ve ORM
+
+<details>
+
+<summary><strong>SQL Nedir?</strong></summary>
+
+### SQL Nedir?
+
+- **SQL, Structured Query Language (Yapılandırılmış Sorgu Dili) anlamına gelir. Veritabanlarıyla iletişim kurmak için kullanılan standart bir programlama dilidir. Amacı Veritabanındaki verileri oluşturmak, okumak, güncellemek ve silmek (CRUD: Create, Read, Update, Delete) için kullanılmaktadır.Kullanıldığı yerler: MySQL, PostgreSQL, SQL Server, Oracle gibi ilişkisel veritabanlarında kullanılır. Kısaca SQL, veritabanlarıyla iletişim kurmanın dili diyebiliriz.**
+
+
+
+</details>
+
+
+<details> 
+
+<summary><strong>İlişkisel ve ilişkisel olmayan veri tabanları arasındaki farklar</strong></summary>
+
+### İlişkisel Veritabanı (RDBMS - Relational Database Management System):
+
+- **Veriler tablo (table) yapısında saklanır. Tablolar arası ilişkiler (relationship) tanımlanabilir.**
+
+- **Örnek: MySQL, PostgreSQL, SQL Server, Oracle**
+
+### İlişkisel Olmayan Veritabanı (NoSQL - Not Only SQL):
+
+- **Veriler tablo yapısına bağlı olmadan, farklı formatlarda saklanabilir: belge (document), anahtar-değer (key-value), grafik (graph), sütun (column-family) vb.**
+
+- **Örnek: MongoDB, Redis, Cassandra, Neo4j**
+
+
+## Arasındaki Farklar Nelerdir:
+
+
+### Sorgulama:
+
+- **RDBMS: SQL kullanılır, güçlü sorgulama ve join yetenekleri vardır.**
+NoSQL: SQL yerine API veya özel sorgu dili kullanılır (MongoDB → Mongo Query, Redis → komutlar).
+
+### Ölçeklenebilirlik 
+
+- **RDBMS: Dikey ölçeklenebilir (daha güçlü sunucu eklenir)**
+- **NoSQL: Yatay ölçeklenebilir (sunucu sayısı artırılır)**
+
+### Kullanım Alanları
+
+- **RDBMS: Bankacılık, muhasebe, stok yönetimi, müşteri ilişkileri gibi yapısal ve tutarlı veriler.**
+- **NoSQL: Sosyal medya, büyük veri, gerçek zamanlı veri, esnek içerik yönetimi.**
+
+</details>
+
+<details>
+
+<summary><strong>ORM nedir? Entity Framework Core nedir?</strong></summary>
+
+### ORM Nedir?
+
+- **ORM, nesne yönelimli programlama (OOP) ile ilişkisel veritabanı (RDBMS) arasındaki köprüdür. Amaç Veritabanındaki tabloları sınıflar ve nesneler ile temsil etmek ve SQL yazma ihtiyacını azaltmaktır. SQL sorgularını doğrudan yazmak zorunda kalmazsınız Kod ile veritabanı arasında uyum sağlar CRUD işlemleri daha kolay ve hızlı yapılır Ancak Karmaşık sorgularda performans düşebilir ORM öğrenmek başlangıçta biraz zaman alabilir.**
+
+### Entity Framework Core Nedir?
+
+
+- **Microsoft tarafından geliştirilen, .NET için modern ORM aracıdır. Platformlar arası çalışır (Windows, Linux, macOS) Code-First ve Database-First yaklaşımlarını destekler LINQ (Language Integrated Query) ile veritabanı sorgulama sağlar Migration desteği ile veritabanı değişikliklerini yönetir Entity Framework Core: .NET için güçlüdür**
+
+
+
+
+</details>
+
+
+<details>
+
+<summary><strong>LINQ nedir? En çok kullanılan LINQ ifadeleri</strong></summary>
+
+### LINQ nedir?
+
+- **LINQ (Language Integrated Query), yani Dil Entegre Sorgulama, .NET ortamında veri sorgulama ve işleme işlemlerini programlama dili içinde yapmamızı sağlayan bir özelliktir. LINQ sayesinde SQL benzeri sorguları C# veya VB.NET kodu içinde yazabilirsiniz, veritabanı, koleksiyon veya XML fark etmez. Başlıca temel özellikleri (Type-Safe) Hataları derleme zamanında yakalar. Birleşik sözdizimi Farklı veri kaynakları için aynı yöntemle sorgulama yapılabilir (veritabanı, liste, XML). Okunabilirlik Karmaşık döngüler ve koşullar LINQ ile daha kısa ve anlaşılır olur. ve Deferred Execution (Gecikmeli Çalışma): Sorgular, veriye ihtiyaç olana kadar çalıştırılmaz; performansı artırır.**
+
+
+### En Çok Kullanılan LINQ Tipleri 
+
+ **1. Where**
+
+- **Ne yapar: Filtreleme yapar, belirli bir koşulu sağlayan öğeleri seçer.**
+
+**2. Select**
+
+- **Ne yapar: Koleksiyondan istediğiniz alanları seçer veya projeksiyon yapar.**
+
+**3. OrderBy / OrderByDescending**
+
+- **Ne yapar: Verileri artan veya azalan sırada sıralar.**
+
+**4. First / FirstOrDefault**
+
+- **Ne yapar: Koşulu sağlayan ilk öğeyi döndürür. Eğer yoksa:  First() → hata verir FirstOrDefault() → null veya varsayılan değer döner**
+
+
+**5. . Single / SingleOrDefault**
+
+- **Ne yapar: Sadece tek bir öğe döndürür. Birden fazla varsa hata verir.**
+
+
+
+**6. Any**
+
+- **Ne yapar: Koleksiyonda koşulu sağlayan öğe var mı kontrol eder**
+
+
+
+**2. All**
+
+- **Ne yapar: Tüm öğelerin belirli koşulu sağlayıp sağlamadığını kontrol eder.**
+
+
+**7. Count**
+
+- **Ne yapar: Koleksiyondaki öğe sayısını döndürür, koşul ile birlikte kullanılabilir.**
+
+
+**8. GroupByr**
+
+- **Ne yapar: Öğeleri belirli bir anahtara göre gruplar**
+
+
+</details>
+
+<details>
+
+<summary><strong>Code-First ve Database-First yaklaşımı nedir?</strong></summary>
+
+### Code-First (Kod Öncelikli) Yaklaşımı
+
+- **Önce uygulama kodu yazılır; veritabanı bu koddan otomatik olarak oluşturulur. Kullanım Alanı daha çok yeni projelerde, veritabanı henüz yoksa veya kod odaklı geliştirme yapılırken tercih edilmektedir. Kod ile veritabanı arasında tam kontrol sağlar Migration (göç) desteği ile veritabanı versiyonları kolay yönetilir Test ve geliştirme süreçleri daha hızlıdır Ancak Karmaşık veritabanı yapılarında manuel ayarlamalar gerekebilir**
+
+### Database-First (Veritabanı Öncelikli) Yaklaşımı
+
+- **Önce var olan veritabanı tasarlanır; uygulamadaki sınıflar ve ORM modelleri veritabanından türetilir. Kullanım Alanı mevcut veritabanlarıyla çalışırken Kurumsal sistemlerde, büyük ve karmaşık tablolar mevcutsa kullanılmaktadır. Mevcut veritabanını hızlı bir şekilde uygulamaya adapte eder, Karmaşık tablolar ve ilişkiler için uygundur. Ancak Kod tarafında değişiklik yapmak daha zordur ve Migration yönetimi sınırlıdır**
+
+### 🟠 Code-First vs DB-First karşılaştırması 
+
+```
+mermaid
+graph LR
+    subgraph Code-First
+        A[Uygulama Sınıfları] -->|Migration| B[Veritabanı Oluşturulur]
+        B --> C[CRUD İşlemleri]
+    end
+
+    subgraph Database-First
+        D[Mevcut Veritabanı] -->|Reverse Engineering| E[Uygulama Sınıfları]
+        E --> F[CRUD İşlemleri]
+    end
+
+
+### Açıklama:
+- **Code-First:** Önce **kod yazılır**, migration ile veritabanı oluşturulur. Yeni projeler için uygundur.  
+- **Database-First:** Önce **var olan veritabanı** vardır, sınıflar veritabanından türetilir. Mevcut projelere entegrasyon için uygundur.  
+```
+---
+
+</details>
+
+<details>
+
+<summary><strong>Temel SQL sorguları: SELECT, INSERT, UPDATE, DELETE</strong></summary>
+
+### SELECT:
+
+- **Ne işe yarar: Veritabanındaki tablolardan veri okumak/sorgulamak için kullanılır.**
+ 
+```
+**SELECT column1, column2 
+FROM TableName 
+WHERE condition 
+ORDER BY column;**
+```
+
+### INSERT:
+
+- **Ne işe yarar: Tablolara yeni veri eklemek için kullanılır. **
+
+```
+INSERT INTO Users (Name, Age) 
+VALUES ('Ahmet', 25);
+```
+
+### UPDATE:
+
+- **Ne işe yarar: Tablolardaki mevcut veriyi güncellemek için kullanılır.**
+
+```
+UPDATE Users 
+SET Age = 26 
+WHERE Name = 'Ahmet';
+```
+
+### DELETE:
+
+- **Tablolardan veri silmek için kullanılır.**
+
+```
+DELETE FROM Users 
+WHERE Name = 'Ahmet';
+```
+
+</details>
+
+<br>
+
+##  🛡 6. Güvenlik ve Performans
+
+<details>
+
+<summary><strong>Authentication vs Authorization nedir?</strong></summary>
+
+### Authentication (Kimlik Doğrulama) Nedir?
+
+- **Bir kullanıcının gerçekten iddia ettiği kişi olup olmadığını doğrulama işlemidir. Amacı Sisteme giriş yapan kişinin kimliğini teyit etmetir. Kullanıcı adı ve şifre ile,Tek seferlik kod (OTP) ile,Biyometrik doğrulama (parmak izi, yüz tanıma) ile yapılabilmektedir. Örnek Kullanıcı username: Mehmet, password: 1234 ile giriş yapıyor. Sistem bu bilgileri kontrol ediyor ve doğruysa kullanıcıyı doğruluyor.**
+
+### Authorization (Yetkilendirme) Nedir?
+
+- **Kimliği doğrulanan bir kullanıcının hangi kaynaklara veya işlemlere erişebileceğini belirleme işlemidir. Amacı Kullanıcının sisteme erişim haklarını kontrol etmek. Rol tabanlı yetkilendirme (Admin, User, Guest) İzin tabanlı yetkilendirme (Read, Write, Delete) yapılabilmektedir. Örnek Kullanıcı kimliği doğrulandıktan sonra sadece kendi profilini görebiliyor, ama başka kullanıcıların verilerini göremiyor. Admin rolündeki kullanıcı tüm verilere erişebiliyor.**
+
+</details>
+
+<details>
+
+<summary><strong>JWT (JSON Web Token) nedir, nasıl çalışır?</strong></summary>
+
+### JWT (JSON Web Token) Nedir?
+
+- **JWT (JSON Web Token) modern web uygulamalarında kimlik doğrulama (authentication) ve yetkilendirme (authorization) için kullanılan, güvenli bilgi taşıyan, JSON tabanlı bir token formata verilen isimdir. Stateless (durumsuz) çalışır Sunucuda oturum (session) bilgisi tutmaya gerek yoktur.İstemciye verilen token ile her istek doğrulanır. Hem kimlik doğrulama (login) hem de yetkilendirme (rol/izin kontrolü) için kullanılır. Genellikle API güvenliği için tercih edilir.**
+
+
+### JWT (JSON Web Token Nasıl Çalışır? 
+
+- **JWT 3 parçadan oluşur ve . ile ayrılır: xxxxx.yyyyy.zzzzz. Önce Kullanıcı login olur. Sunucu doğru kimlik bilgilerini doğrular ve kullanıcıya bir JWT token üretip gönderir ve Kullanıcı bu token’ı her isteğin Authorization header’ında taşır. Sunucu gelen token’ı doğrular → Eğer geçerliyse kullanıcıya erişim izni verir. Platform bağımsızdır JSON destekleyen her yerde kullanılabilir. Dağıtık sistemler için uygun (özellikle microservices). Token içindeki payload şifreli değil, sadece encode edilir hassas bilgi tutulmamalıdır. Token süresi dolana kadar iptal edilemez. (stateless yapısından dolayı)**
+
+**Header:** 
+
+- **Algoritma ve token tipi bilgilerini içerir. Örneğin "alg": "HS256", "typ": "JWT"**
+
+**Payload(Yük)**
+
+- **Kullanıcıya ait bilgiler (id, rol, kullanıcı adı vs.) bulunur. Gizli değildir, base64 ile encode edilir. Örnek "userId": 1,  "name": "Fatih",  "role": "Admin",  "exp": 1734567890** 
+
+**Signature (İmza)**
+
+- **Header + Payload + Gizli Anahtar ile oluşturulur. Token’ın değiştirilmediğini garanti eder.**
+
+</details>
+ 
+
+<details>
+
+<summary><strong>OAuth, OAuth2.0, OpenIddict, OpenID nedir? Aralarındaki ilişki</strong></summary>
+
+### OAuth: 
+
+- **Kullanıcının şifresini paylaşmadan, üçüncü taraf uygulamalara kendi hesabına sınırlı erişim vermesini sağlayan yetkilendirme protokolüdür. Mesela Bir siteye “Google hesabınla giriş yap” dediğinde, o siteye şifreni vermezsin; sadece Google hesabındaki belirli bilgilere erişim izni verirsin.**
+
+### OAuth 2.0:
+
+- **OAuth’un geliştirilmiş, günümüzde en yaygın kullanılan versiyonudur. Daha güvenli, daha esnek ve daha çok senaryoyu destekler. OAuth2 bir kimlik doğrulama (authentication) protokolü değil, yetkilendirme (authorization) protokolüdür.**
+
+### OpenIddict:
+
+
+- **NET ekosisteminde kullanılan, OAuth2.0 ve OpenID Connect protokollerini kolayca uygulamaya yarayan bir açık kaynak kütüphanedir. .NET Core / ASP.NET Core uygulamalarıyla uyumludur JWT (JSON Web Token) desteği bulunmaktadır. Authorization Server kurmak için kolay bir çözüm**
+
+### OpenID:
+
+- **Kimlik doğrulama (authentication) standardıdır. Kullanıcının tek bir hesapla (Google, Facebook, Microsoft vs.) başka sitelere giriş yapmasını sağlar. Mesela Kullanıcının tek bir hesapla (Google, Facebook, Microsoft vs.) başka sitelere giriş yapmasını sağlar. Forum sitesine üye olurken “Google ile giriş yap” seçeneğini tıklarsın. Burada OpenID devreye girer ve senin gerçekten sen olduğunu doğrular.**
+
+ 
+### Aralarındaki İişkiler Nelerdir?
+
+- **OAuth Yetkilendirme için çıktı. Anacı kullanıcının şifresini paylaşmadan, üçüncü taraf uygulamaya sınırlı erişim vermesini sağlamaktır. Ama sadece yetkilendirme yapar. Kullanıcının kim olduğunu doğrulamaz.**
+ 
+- **OAuth 2.0  OAuth’un geliştirilmiş sürümüdür. Daha güvenli, daha esnek, modern sistemlere uygundur. Günümüzde “OAuth” dendiğinde aslında OAuth2.0 kastedilir.**
+
+- **OpenID Kimlik doğrulama için çıktı. "Sen kimsin?" sorusuna cevap verir. Kullanıcının bir kimlik sağlayıcısı (Google, Microsoft vs.) üzerinden giriş yapmasını sağlar. OAuth ile birlikte kullanılabilir.**
+
+- **OpenID Connect (OIDC)  Aslında OpenID + OAuth 2.0 birleşimidir. Modern sistemlerde kullanılan standarttır. OAuth2.0’ın yetkilendirme gücü + OpenID’nin kimlik doğrulama gücünü birleştirir. Günümüzde Google, Facebook, Microsoft login mekanizmaları aslında OpenID Connect kullanır.**
+
+- **OpenIddict .NET dünyasında uygulaması. ASP.NET Core uygulamalarında OAuth2.0 + OpenID Connect protokollerini kolayca kullanmamızı sağlar. Yani bir "kütüphane / framework"tür, protokol değildir.**
+
+### Kısaca : 
+
+- **OAuth: Yetki (izin)**
+
+- **OAuth 2.0: Modern OAuth**
+
+- **OpenID: Kimlik (login)**
+
+- **OpenID Connect: OAuth 2.0 + OpenID → Hem kimlik hem yetki**
+
+- **OpenIddict: .NET için OIDC’nin implementasyonu**
+
+</details>
+
+<details>
+
+<summary><strong>Performans artımı için ne yapılabilir? (AsNoTracking, IAsyncEnumerable, caching, profiling, redis)</strong></summary>
+
+- **AsNoTracking: EF Core sorgularında değişiklik takibini (Change Tracking) devre dışı bırakır. Okuma amaçlı sorgularda (readonly) ciddi performans kazancı sağlar. Okuma ağırlıklı sorgularda EF Core’un değişiklik takibini kapat — bellek ve CPU kazanırsınız. : Veri üzerinde güncelleme yapmayacaksanız, ya da DTO’lara projekte edeceksen kullanmalısınız.
+Dikkat: Daha sonra aynı nesneyle Update yapmak isterseniz önce Attach etmeniz gerekir.**
+
+- **IAsyncEnumerable (await foreach): Büyük sorguları belleğe tamamen yüklemeden, parça parça asenkron tüketmeyi sağlar. Bellek kullanımı düşer ve pipeline tarzı işlem yapılırsa gecikme azalır. üyük tabloları işlerken OutOfMemory riskini azaltmaktadır. Ancak Veritabanı bağlantısı açık kalır; uzun işlemlerde timeout, bağlantı poolu etkilenebilir.**
+
+- **Caching (MemoryCache, Distributed Cache, Redis): Cache-Aside (lazy): Önce cache kontrol et, yoksa DB’den çek, cache’e yaz. Write-through / Write-behind: Yazma işlemlerinde cache’i de güncelle. Expiration: Absolute vs sliding expiration. Redis avantajı oldukça etkilidir Çoklu sunucu/instance ortamında paylaşılan cache, yüksek performans sunar. Ancak Dikkat Cache invalidation (güncelliği sağlama) zor iştir doğru strateji, kısa TTL veya event ile temizleme.lidir**
+
+- **Profiling : Amacı Gerçek darboğazı bulmak (DB, CPU, I/O, GC, ağ). Adımlar: Uygulama seviyesinde logging: EF Core SQL loglarını aç, yavaş sorguları yakala. SQL Profiler / PG tools: Sorgu planlarını, uzun süren sorguları, missing index problemlerini incele. NET Profiling: dotnet-trace, dotnet-counters, PerfView, Visual Studio Profiler, MiniProfiler. Load test: Kestirme testleri (k6, Apache Bench) ile gerçek dünya yükünü simüle et. Metrikler: Response time, CPU, memory, GC, DB latency, connection pool usage.**
+
+- **5) Redis : Kullanım şekli çoktur: Distributed cache (cache aside), Session state (scale-out), Rate limiting / throttling, Pub/Sub (event dağıtımı), Short lived token veya temporary data vb. Redis verileri RAM’de tutar, bu yüzden çok hızlıdır (disk tabanlı veritabanlarına göre kat kat daha hızlı). In-memory çalışır: Veriler RAM’de tutulur → mikro saniye seviyesinde erişim sağlar. Key-Value Store’dur: Veri anahtar-değer çiftleri şeklinde saklanır.**
+
+### Peformans İçin Önerilenler: 
+
+- **Query-level optimizasyon — İndeksler ve Projection Veritabanı sorgularının çalışmasını hızlandırır; sorguların doğru sütunlara indekslenmesiyle full table scan’ler önlenir. SELECT * yerine sadece ihtiyaç duyulan sütunları (Select) çekmek I/O’yu azaltır.**
+
+- **Sık okunan ve nadiren değişen veriyi bellekte tutarak DB çağrılarını ve gecikmeyi azaltır. Cache-aside (önce cache, yoksa DB, sonra cache’e yaz) en yaygın pattern’dır. Listeleme, ürün kataloğu, sık tekrar edilen konfigürasyon/veri için.**
+
+- **EF Core’un değişiklik takibini kapatarak bellek ve CPU kullanımını azaltır; okuma ağırlıklı işlemlerde büyük kazanç sağlar. Veriler sadece okunacak, güncellenmeyecekse (DTO’lara projeksiyon gibi).**
+
+
+
+</details>
+
+## Ek:
+
+<details>
+
+<summary><strong>OWASP Top 10</strong></summary>
+
+### Web uygulamalarında en yaygın güvenlik açıkları ve SQL Injection, XSS, CSRF, Broken Auth gibi başlıkların kısa tanımı:
+
+ **Web uygulamalarında en yaygın güvenlik açıkları genelde OWASP (Open Web Application Security Project) tarafından listelenir. Bunlar geliştiricilerin en çok dikkat etmesi gereken, saldırganların en sık kullandığı zafiyetlerdir.**
+
+- **1. SQL Injection (SQLi) Kullanıcıdan alınan veriler doğrudan SQL sorgularına eklenirse saldırgan veritabanına yetkisiz erişebilir. Kullanıcıdan alınan veriler doğrudan SQL sorgularına eklenirse saldırgan veritabanına yetkisiz erişebilir. Örn: "OR 1=1" gibi sorgu eklemeleriyle veritabanındaki tüm kayıtları çekme.**
+
+- **2. XSS (Cross-Site Scripting) Kullanıcının tarayıcısında kötü niyetli JavaScript çalıştırma. Örn: Yorum alanına <script>alert("hack");</script> yazıp başka kullanıcıların oturum çerezlerini çalma.**
+
+- **3. CSRF (Cross-Site Request Forgery) Kullanıcının haberi olmadan başka bir sitede oturumu kullanarak işlem yaptırma. Örn: Kullanıcı bankasına giriş yapmışken saldırgan linkine tıklatıp para transferi yaptırabilir.**
+
+- **4. Broken Authentication (Kırık Kimlik Doğrulama) Zayıf şifreleme, tahmin edilebilir tokenler, çok faktörlü doğrulama eksikliği. Sonuç: Hesapların ele geçirilmesi.**
+
+- **5. Sensitive Data Exposure (Hassas Veri Sızıntısı) Şifrelerin düz metin saklanması, TLS (HTTPS) kullanılmaması, API anahtarlarının açıkta bırakılması.**
+
+
+### OWASP Top 10 – 2021
+
+- **Broken Access Control (Yetki Kontrolü Açıkları) Kullanıcıların izin verilmemiş kaynaklara veya işlevlere erişebilmesi.**
+
+- **Cryptographic Failures (Kriptografik Hatalar): Hassas verilerin yanlış ya da zayıf şifreleme ile saklanması veya iletilmesi.**
+
+- **Injection (Enjeksiyon Açıkları): SQL, NoSQL, OS komutları gibi yerlere doğrulanmamış veri enjekte edilerek saldırı yapılması.**
+
+- **Insecure Design (Güvensiz Tasarım): Sistem baştan yanlış tasarlandığı için güvenlik açıklarının doğrudan mimariye gömülü olması.**
+
+- **Security Misconfiguration (Yanlış Güvenlik Yapılandırması): Varsayılan şifrelerin açık bırakılması, gereksiz servislerin çalıştırılması veya eksik güvenlik yamaları.**
+
+- **Vulnerable and Outdated Components (Güvenlik Açığı Olan ve Güncel Olmayan Bileşenler): Eski kütüphaneler, frameworkler veya yazılımlar kullanılması.**
+
+- **Identification and Authentication Failures (Kimlik Doğrulama Hataları): Zayıf şifre politikaları, çok faktörlü kimlik doğrulamanın olmaması veya oturum yönetimi hataları.**
+
+- **Software and Data Integrity Failures (Yazılım ve Veri Bütünlüğü Hataları): İmzalanmamış yazılımların/bağımlılıkların yüklenmesi veya doğrulanmamış güncellemelerin kabul edilmesi.**
+
+- **Security Logging and Monitoring Failures (Loglama ve İzleme Hataları): Güvenlik olaylarının kaydedilmemesi ya da saldırıların fark edilmemesi.**
+
+- **Server-Side Request Forgery – SSRF (Sunucu Taraflı İstek Sahteciliği): Saldırganın, sunucuyu kendi adına başka sistemlere istek göndermeye zorlaması.**
+
+
+</details>
+
+<details>
+
+<summary><strong>ASP.NET Core ile alınabilecek önlemler (örnek: model validation, input sanitization)</strong></summary>
+
+### ASP.NET Core uygulamalarında güvenlik için alınabilecek önlemler, hem input validation hem de framework seviyesinde yerleşik mekanizmalarla desteklenir. İşte en yaygın ve etkili önlemler:
+
+- **Model Validation (Model Doğrulama) :**
+
+- **Kullanıcıdan gelen verilerin doğru formatta, gerekli alanların dolu ve limitlerin uygun olmasını sağlar. Kullanım: DataAnnotations ile model üzerinde kurallar tanımlanır.**
+
+- **Input Sanitization (Girdi Temizleme) : Kullanıcının gönderdiği verileri zararlı kodlardan (XSS, HTML/JS injection) temizler. Razor view’de @Html.Encode(), veya paketler: Ganss.XSS**
+
+- **Kullanıcının gönderdiği verileri zararlı kodlardan (XSS, HTML/JS injection) temizler. Razor view’de @Html.Encode(), veya paketler: Ganss.XSS**
+
+- **Cross-Site Request Forgery saldırılarını engeller. : Formlar ve API istekleri için token doğrulama.**
+
+- **Authentication & AuthorizationWT veya Cookie Authentication: Kullanıcı doğrulama ve yetki kontrolü sağlar. Policy/Role tabanlı yetkilendirme.**
+
+</details>
+
+<br>
+
+## 7. 📊 Logging ve Hata Yönetimi
+
+<details>
+
+<summary><strong></strong></summary>
 
 </details>
