@@ -1229,7 +1229,7 @@ public class UserService
 <br>
 
 
-## 5 💾 Veritabanı ve ORM
+## 5. 💾 Veritabanı ve ORM
 
 <details>
 
@@ -1440,7 +1440,7 @@ WHERE Name = 'Ahmet';
 
 <br>
 
-##  🛡 6. Güvenlik ve Performans
+## 6. 🛡 Güvenlik ve Performans
 
 <details>
 
@@ -1840,7 +1840,7 @@ public class HomeController : Controller
 
 <br>
 
-## 📦  8. Yazılım Geliştirme Prensipleri 
+## 8. 📦  Yazılım Geliştirme Prensipleri 
 
 <details>
 
